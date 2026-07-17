@@ -24,7 +24,7 @@ import MagneticButton from './MagneticButton.tsx';
         client:load 
         className="bg-brand-blue hover:bg-brand-black text-brand-white text-base md:text-lg font-semibold px-10 py-5 rounded-full transition-all duration-300 shadow-md hover:shadow-lg cursor-none animate-bounce-slow"
         onClick={() => {
-          window.location.href = 'mailto:hello@standoutlabs.com';
+          window.location.href = 'mailto:info@standoutlabs.in';
         }}
       >
         Start Your Project <span class="inline-block ml-1">→</span>
@@ -32,33 +32,44 @@ import MagneticButton from './MagneticButton.tsx';
     </div>
 
     {/* Footer Bottom Metadata and Links */}
-    <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-8 border-t border-[#E3E3DF] pt-12">
+    <div class="flex flex-col lg:flex-row justify-between items-start gap-12 border-t border-[#E3E3DF] pt-12">
       
       {/* Brand logo & tagline */}
-      <div class="flex flex-col gap-1.5 text-left">
+      <div class="flex flex-col gap-2 text-left max-w-xs">
         <div class="flex items-center gap-2.5">
           <Logo client:load size={24} interactive={false} />
           <span class="font-display font-bold text-xl text-brand-black tracking-tight">
             Standout<span class="text-brand-blue">Labs</span>
           </span>
         </div>
-        <span class="text-xs font-semibold uppercase tracking-wider text-brand-gray">
+        <span class="text-[11px] font-semibold uppercase tracking-wider text-brand-gray">
           We make brands impossible to ignore.
+        </span>
+        <span class="text-[11px] text-brand-gray mt-2 font-sans">
+          © 2026 Standout Labs. All rights reserved.
         </span>
       </div>
 
       {/* Footer Nav */}
-      <div class="flex flex-wrap gap-x-8 gap-y-4">
-        <a href="#services" class="text-xs font-semibold uppercase tracking-wider text-brand-gray hover:text-brand-black cursor-none">Services</a>
-        <a href="#work" class="text-xs font-semibold uppercase tracking-wider text-brand-gray hover:text-brand-black cursor-none">Work</a>
-        <a href="#process" class="text-xs font-semibold uppercase tracking-wider text-brand-gray hover:text-brand-black cursor-none">Process</a>
-        <a href="#why-choose-us" class="text-xs font-semibold uppercase tracking-wider text-brand-gray hover:text-brand-black cursor-none">Why Us</a>
+      <div class="flex flex-col gap-3.5 text-left font-sans">
+        <span class="text-[10px] font-bold uppercase tracking-[0.2em] text-brand-gray/60">Explore</span>
+        <div class="flex flex-col gap-2 text-xs">
+          <a href="#services" class="font-medium text-brand-gray hover:text-brand-black cursor-none">Services</a>
+          <a href="#work" class="font-medium text-brand-gray hover:text-brand-black cursor-none">Work</a>
+          <a href="#process" class="font-medium text-brand-gray hover:text-brand-black cursor-none">Process</a>
+          <a href="#why-choose-us" class="font-medium text-brand-gray hover:text-brand-black cursor-none">Why Us</a>
+        </div>
       </div>
 
-      {/* Copyright */}
-      <span class="text-xs text-brand-gray">
-        © 2026 Standout Labs. All rights reserved.
-      </span>
+      {/* Contact Details */}
+      <div class="flex flex-col gap-3.5 text-left font-sans">
+        <span class="text-[10px] font-bold uppercase tracking-[0.2em] text-brand-gray/60">Connect</span>
+        <div class="flex flex-col gap-2 text-xs">
+          <a href="mailto:info@standoutlabs.in" class="font-medium text-brand-black hover:text-brand-blue cursor-none">info@standoutlabs.in</a>
+          <a href="tel:+919963491075" class="font-medium text-brand-gray hover:text-brand-blue cursor-none">+91 99634 91075</a>
+          <a href="tel:8374930568" class="font-medium text-brand-gray hover:text-brand-blue cursor-none">8374930568</a>
+        </div>
+      </div>
 
     </div>
   </div>
