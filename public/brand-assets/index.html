@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Standout Labs — Brand Assets</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *{ box-sizing:border-box; }
+  body{ margin:0; background:#EDEDEA; font-family:'Inter',sans-serif; color:#111; padding:64px 48px; }
+  .wrap{ max-width:1120px; margin:0 auto; }
+  h1{ font-family:'Space Grotesk',sans-serif; font-size:40px; font-weight:600; letter-spacing:-0.03em; margin:0 0 4px; }
+  .sub{ font-size:14px; color:#8A8A85; letter-spacing:0.02em; margin-bottom:40px; }
+  h2{ font-family:'Space Grotesk',sans-serif; font-size:13px; font-weight:600; letter-spacing:0.16em; text-transform:uppercase; color:#9A9A94; margin:44px 0 18px; }
+  .grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:20px; }
+  .card{ background:#fff; border:1px solid #E3E3DF; border-radius:14px; overflow:hidden; box-shadow:0 1px 2px rgba(17,17,17,.04),0 10px 26px rgba(17,17,17,.05); }
+  .card .frame{ height:150px; display:flex; align-items:center; justify-content:center; padding:26px;
+    background-image:linear-gradient(45deg,#f3f3f0 25%,transparent 25%),linear-gradient(-45deg,#f3f3f0 25%,transparent 25%),linear-gradient(45deg,transparent 75%,#f3f3f0 75%),linear-gradient(-45deg,transparent 75%,#f3f3f0 75%);
+    background-size:16px 16px; background-position:0 0,0 8px,8px -8px,-8px 0px; background-color:#fbfbfa; }
+  .card.dark .frame{ background:#111; }
+  .card img{ max-width:100%; max-height:100%; }
+  .card .lbl{ border-top:1px solid #EFEFEC; padding:11px 14px; font-size:12px; color:#6A6A64; font-family:'Space Grotesk',sans-serif; }
+  .note{ font-size:13px; color:#6A6A64; line-height:1.6; max-width:620px; background:#fff; border:1px solid #E3E3DF; border-radius:12px; padding:16px 20px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Standout Labs — Brand Assets</h1>
+  <div class="sub">Production vector &amp; raster package · master files are SVG</div>
+
+  <h2>Core Logo (SVG)</h2>
+  <div class="grid">
+    <div class="card"><div class="frame"><img src="logo-horizontal.svg"></div><div class="lbl">logo-horizontal.svg</div></div>
+    <div class="card"><div class="frame"><img src="logo-stacked.svg"></div><div class="lbl">logo-stacked.svg</div></div>
+    <div class="card"><div class="frame"><img src="logo-mark.svg"></div><div class="lbl">logo-mark.svg</div></div>
+    <div class="card"><div class="frame"><img src="wordmark.svg"></div><div class="lbl">wordmark.svg</div></div>
+    <div class="card"><div class="frame"><img src="favicon.svg"></div><div class="lbl">favicon.svg / icon.svg</div></div>
+  </div>
+
+  <h2>Monochrome &amp; Color Variants</h2>
+  <div class="grid">
+    <div class="card"><div class="frame"><img src="logo-mark-black.svg"></div><div class="lbl">logo-mark-black.svg</div></div>
+    <div class="card dark"><div class="frame"><img src="logo-mark-white.svg"></div><div class="lbl">logo-mark-white.svg</div></div>
+    <div class="card"><div class="frame"><img src="logo-mark-blue.svg"></div><div class="lbl">logo-mark-blue.svg</div></div>
+    <div class="card"><div class="frame"><img src="wordmark-black.svg"></div><div class="lbl">wordmark-black.svg</div></div>
+    <div class="card dark"><div class="frame"><img src="wordmark-white.svg"></div><div class="lbl">wordmark-white.svg</div></div>
+  </div>
+
+  <h2>Motion Components — brand DNA</h2>
+  <div class="grid">
+    <div class="card"><div class="frame"><img src="motion/blue-square.svg" style="width:54px;height:54px"></div><div class="lbl">blue-square.svg</div></div>
+    <div class="card"><div class="frame"><img src="motion/black-block.svg" style="width:48px;height:48px"></div><div class="lbl">black-block.svg</div></div>
+    <div class="card"><div class="frame"><img src="motion/grid-pattern.svg"></div><div class="lbl">grid-pattern.svg</div></div>
+    <div class="card"><div class="frame"><img src="logo-filled.svg"></div><div class="lbl">logo-filled.svg</div></div>
+    <div class="card"><div class="frame"><img src="logo-outline.svg"></div><div class="lbl">logo-outline.svg</div></div>
+  </div>
+
+  <h2>Raster Exports</h2>
+  <div class="grid">
+    <div class="card"><div class="frame"><img src="png/logo-mark-512.png"></div><div class="lbl">png/logo-mark-{512,1024,2048,4096}.png</div></div>
+    <div class="card"><div class="frame"><img src="png/logo-2048.png"></div><div class="lbl">png/logo-2048.png</div></div>
+    <div class="card"><div class="frame"><img src="png/favicon-512.png"></div><div class="lbl">png/favicon-512.png</div></div>
+    <div class="card"><div class="frame"><img src="webp/logo-mark.webp"></div><div class="lbl">webp/logo-mark.webp</div></div>
+    <div class="card"><div class="frame"><img src="webp/logo.webp"></div><div class="lbl">webp/logo.webp · favicon.webp</div></div>
+  </div>
+
+  <h2>Notes</h2>
+  <div class="note">
+    SVGs are the master files — all PNG/WebP are rendered from them with transparent backgrounds at 512 / 1024 / 2048 / 4096 px.
+    Text-bearing SVGs (wordmark &amp; lockups) embed a Space Grotesk web-font import so they render standalone in browsers, Framer, and Rive.
+    For After Effects / Lottie or any offline pipeline, outline the type on import (or use the mark-only files, which are pure vector shapes and need no font).
+    The <strong>blue-square.svg</strong> is isolated as your reusable hero element for cursors, transitions, loaders, and compositing.
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,65 @@
+---
+import Logo from './Logo.tsx';
+import MagneticButton from './MagneticButton.tsx';
+---
+
+<footer id="contact" class="w-full bg-brand-bg relative overflow-hidden border-t border-[#E3E3DF]/50 scroll-mt-20">
+  {/* Dot Grid Background */}
+  <div class="absolute inset-0 grid-bg opacity-30 pointer-events-none"></div>
+
+  <div class="w-full max-w-7xl mx-auto px-6 md:px-12 py-24 md:py-32 flex flex-col gap-24 relative z-10">
+    
+    {/* Final CTA block */}
+    <div class="flex flex-col items-center text-center gap-6 md:gap-8">
+      {/* Premium logo directly above CTA */}
+      <div class="mb-2">
+        <Logo client:load size={64} />
+      </div>
+
+      <h2 class="font-display font-bold text-5xl sm:text-7xl md:text-8xl lg:text-[110px] leading-[0.9] tracking-tight text-brand-black max-w-4xl">
+        Ready to <br class="sm:hidden"/>stand out?
+      </h2>
+      
+      <MagneticButton 
+        client:load 
+        className="bg-brand-blue hover:bg-brand-black text-brand-white text-base md:text-lg font-semibold px-10 py-5 rounded-full transition-all duration-300 shadow-md hover:shadow-lg cursor-none animate-bounce-slow"
+        onClick={() => {
+          window.location.href = 'mailto:hello@standoutlabs.com';
+        }}
+      >
+        Start Your Project <span class="inline-block ml-1">→</span>
+      </MagneticButton>
+    </div>
+
+    {/* Footer Bottom Metadata and Links */}
+    <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-8 border-t border-[#E3E3DF] pt-12">
+      
+      {/* Brand logo & tagline */}
+      <div class="flex flex-col gap-1.5 text-left">
+        <div class="flex items-center gap-2.5">
+          <Logo client:load size={24} interactive={false} />
+          <span class="font-display font-bold text-xl text-brand-black tracking-tight">
+            Standout<span class="text-brand-blue">Labs</span>
+          </span>
+        </div>
+        <span class="text-xs font-semibold uppercase tracking-wider text-brand-gray">
+          We make brands impossible to ignore.
+        </span>
+      </div>
+
+      {/* Footer Nav */}
+      <div class="flex flex-wrap gap-x-8 gap-y-4">
+        <a href="#services" class="text-xs font-semibold uppercase tracking-wider text-brand-gray hover:text-brand-black cursor-none">Services</a>
+        <a href="#work" class="text-xs font-semibold uppercase tracking-wider text-brand-gray hover:text-brand-black cursor-none">Work</a>
+        <a href="#process" class="text-xs font-semibold uppercase tracking-wider text-brand-gray hover:text-brand-black cursor-none">Process</a>
+        <a href="#why-choose-us" class="text-xs font-semibold uppercase tracking-wider text-brand-gray hover:text-brand-black cursor-none">Why Us</a>
+      </div>
+
+      {/* Copyright */}
+      <span class="text-xs text-brand-gray">
+        © 2026 Standout Labs. All rights reserved.
+      </span>
+
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,57 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import ScrollStory from '../components/ScrollStory.tsx';
+import SplitStory from '../components/SplitStory.tsx';
+import WhatWeDo from '../components/WhatWeDo.astro';
+import HorizontalPortfolio from '../components/HorizontalPortfolio.tsx';
+import BlueprintProcess from '../components/BlueprintProcess.tsx';
+import InfiniteWall from '../components/InfiniteWall.tsx';
+import MotionTypography from '../components/MotionTypography.tsx';
+import WhyStandout from '../components/WhyStandout.astro';
+import Testimonials from '../components/Testimonials.astro';
+import Footer from '../components/Footer.astro';
+import LiveAIDemo from '../components/LiveAIDemo.tsx';
+---
+
+<Layout>
+  {/* Sticky Header Nav with Scroll Progress Logo */}
+  <Header />
+
+  {/* Interactive Grid Hero */}
+  <Hero />
+
+  {/* Scroll Story transformation before/after morphs */}
+  <ScrollStory client:load />
+
+  {/* Split Screen AI Workflow self-drawing node connection */}
+  <SplitStory client:load />
+
+  {/* Capabilities Node-Link Ecosystem Map */}
+  <WhatWeDo />
+
+  {/* Horizontal Portfolio Slide Gallery with before/after comparison dragging */}
+  <HorizontalPortfolio client:load />
+
+  {/* Blueprint Timeline Scroll */}
+  <BlueprintProcess client:load />
+
+  {/* Looping Keyword wall of work tags */}
+  <InfiniteWall client:load />
+
+  {/* Parallax scrolling text divider */}
+  <MotionTypography client:load />
+
+  {/* Studio pillars & principles card grid */}
+  <WhyStandout />
+
+  {/* Client quotes */}
+  <Testimonials />
+
+  {/* Footer with email link redirection */}
+  <Footer />
+
+  {/* Floating bottom-right assistant demo */}
+  <LiveAIDemo client:load />
+</Layout>

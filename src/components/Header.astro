@@ -1,0 +1,38 @@
+---
+import Logo from './Logo.tsx';
+import MagneticButton from './MagneticButton.tsx';
+---
+
+<header class="w-full py-6 px-6 md:px-12 flex justify-between items-center z-50 bg-brand-bg/85 backdrop-blur-md sticky top-0 border-b border-[#E3E3DF]/30">
+  {/* Logo container */}
+  <div class="flex items-center gap-3">
+    <Logo client:load size={32} progressTrack={true} />
+    <a href="/" class="font-display font-bold text-lg md:text-xl tracking-tight text-brand-black cursor-none">
+      Standout<span class="text-brand-blue">Labs</span>
+    </a>
+  </div>
+
+  {/* Desktop navigation */}
+  <nav class="hidden md:flex items-center gap-8 z-10">
+    <a href="#services" class="text-sm font-medium text-brand-gray hover:text-brand-black transition-colors cursor-none">Ecosystem</a>
+    <a href="#work" class="text-sm font-medium text-brand-gray hover:text-brand-black transition-colors cursor-none">Showcase</a>
+    <a href="#process" class="text-sm font-medium text-brand-gray hover:text-brand-black transition-colors cursor-none">Transformation</a>
+    <a href="#why-choose-us" class="text-sm font-medium text-brand-gray hover:text-brand-black transition-colors cursor-none">Strategy</a>
+  </nav>
+
+  {/* CTA Button */}
+  <div>
+    <MagneticButton 
+      client:load 
+      className="bg-brand-black text-brand-white text-xs md:text-sm font-semibold px-5 py-2.5 rounded-full hover:bg-brand-blue transition-colors cursor-none shadow-sm"
+      onClick={() => {
+        const contactSection = document.getElementById('contact');
+        if (contactSection) {
+          contactSection.scrollIntoView({ behavior: 'smooth' });
+        }
+      }}
+    >
+      Start Project
+    </MagneticButton>
+  </div>
+</header>

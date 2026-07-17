@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *{ box-sizing:border-box; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+    doc-page:not(:defined){ visibility:hidden; }
+    a{ color:#3B82F6; text-decoration:none; }
+  </style>
+  <script>
+    addEventListener('load', () => {
+      (async () => {
+        try { await document.fonts.ready; } catch (e) {}
+        const imgs = Array.from(document.images).filter((i) => !i.complete);
+        await Promise.race([
+          Promise.allSettled(imgs.map((i) => i.decode())),
+          new Promise((r) => setTimeout(r, 8000)),
+        ]);
+        setTimeout(() => window.print(), 700);
+      })();
+    });
+  </script>
+</helmet>
+<x-import component-from-global-scope="doc-page" from="./doc-page.js" size="letter" orientation="portrait" margin="0.6in" hint-size="100%,100%">
+  <div style="font-family:'Inter',sans-serif; color:#111111; display:flex; flex-direction:column; gap:22px;">
+
+    <!-- Masthead -->
+    <div style="display:flex; align-items:flex-end; justify-content:space-between; gap:20px; border-bottom:1px solid #E7E7E3; padding-bottom:20px; break-inside:avoid;">
+      <div style="display:flex; flex-direction:column; gap:12px;">
+        <span style="font-size:10.5px; letter-spacing:0.22em; text-transform:uppercase; color:#8A8A85; font-weight:600;">Brand Identity System</span>
+        <h1 style="margin:0; font-family:'Space Grotesk',sans-serif; font-size:40px; font-weight:600; letter-spacing:-0.03em; line-height:0.95;">Standout&nbsp;Labs</h1>
+      </div>
+      <div style="display:flex; flex-direction:column; align-items:flex-end; gap:5px; text-align:right; font-size:10.5px; color:#8A8A85; line-height:1.5;">
+        <span>AI · Branding · Web · Growth</span>
+        <span>v1.0 — 2026</span>
+      </div>
+    </div>
+
+    <!-- Primary horizontal lockup -->
+    <div style="background:#FFFFFF; border:1px solid #E7E7E3; border-radius:14px; overflow:hidden; break-inside:avoid;">
+      <div style="display:flex; align-items:center; justify-content:center; padding:56px 40px;">
+        <div style="display:flex; align-items:center; gap:22px;">
+          <div style="color:#111111; width:72px; height:72px;">
+            <dc-import name="Mark" accent="#3B82F6" hint-size="72px,72px"></dc-import>
+          </div>
+          <div style="font-family:'Space Grotesk',sans-serif; font-size:42px; font-weight:500; letter-spacing:-0.035em; line-height:1;">Standout <span style="font-weight:700; color:#3B82F6;">Labs</span></div>
+        </div>
+      </div>
+      <div style="border-top:1px solid #EFEFEC; padding:12px 20px; display:flex; justify-content:space-between; align-items:center;">
+        <span style="font-size:10.5px; letter-spacing:0.14em; text-transform:uppercase; color:#9A9A94; font-weight:600;">01 — Primary Horizontal Logo</span>
+        <span style="font-size:10.5px; color:#B4B4AE;">Preferred lockup</span>
+      </div>
+    </div>
+
+    <!-- Stacked + Monogram -->
+    <div style="display:grid; grid-template-columns:1.4fr 1fr; gap:22px;">
+      <div style="background:#FFFFFF; border:1px solid #E7E7E3; border-radius:14px; overflow:hidden; break-inside:avoid;">
+        <div style="display:flex; align-items:center; justify-content:center; padding:40px 20px;">
+          <div style="display:flex; flex-direction:column; align-items:center; gap:16px;">
+            <div style="color:#111111; width:74px; height:74px;">
+              <dc-import name="Mark" accent="#3B82F6" hint-size="74px,74px"></dc-import>
+            </div>
+            <div style="font-family:'Space Grotesk',sans-serif; font-size:26px; font-weight:500; letter-spacing:-0.03em; line-height:1;">Standout <span style="font-weight:700; color:#3B82F6;">Labs</span></div>
+          </div>
+        </div>
+        <div style="border-top:1px solid #EFEFEC; padding:12px 20px;">
+          <span style="font-size:10.5px; letter-spacing:0.14em; text-transform:uppercase; color:#9A9A94; font-weight:600;">02 — Stacked Logo</span>
+        </div>
+      </div>
+      <div style="background:#FFFFFF; border:1px solid #E7E7E3; border-radius:14px; overflow:hidden; break-inside:avoid;">
+        <div style="display:flex; align-items:center; justify-content:center; padding:40px 20px;">
+          <div style="color:#111111; width:94px; height:94px;">
+            <dc-import name="Mark" accent="#3B82F6" hint-size="94px,94px"></dc-import>
+          </div>
+        </div>
+        <div style="border-top:1px solid #EFEFEC; padding:12px 20px;">
+          <span style="font-size:10.5px; letter-spacing:0.14em; text-transform:uppercase; color:#9A9A94; font-weight:600;">03 — Monogram Icon</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Black + White -->
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:22px;">
+      <div style="background:#111111; border:1px solid #111111; border-radius:14px; overflow:hidden; break-inside:avoid;">
+        <div style="display:flex; align-items:center; justify-content:center; padding:44px 20px;">
+          <div style="display:flex; align-items:center; gap:16px;">
+            <div style="color:#FFFFFF; width:48px; height:48px;">
+              <dc-import name="Mark" accent="#FFFFFF" hint-size="48px,48px"></dc-import>
+            </div>
+            <div style="font-family:'Space Grotesk',sans-serif; font-size:26px; font-weight:500; letter-spacing:-0.035em; line-height:1; color:#FFFFFF;">Standout <span style="font-weight:700; color:#3B82F6;">Labs</span></div>
+          </div>
+        </div>
+        <div style="border-top:1px solid #262626; padding:12px 20px;">
+          <span style="font-size:10.5px; letter-spacing:0.14em; text-transform:uppercase; color:#6E6E6E; font-weight:600;">04 — White on Black</span>
+        </div>
+      </div>
+      <div style="background:#FFFFFF; border:1px solid #E7E7E3; border-radius:14px; overflow:hidden; break-inside:avoid;">
+        <div style="display:flex; align-items:center; justify-content:center; padding:44px 20px;">
+          <div style="display:flex; align-items:center; gap:16px;">
+            <div style="color:#111111; width:48px; height:48px;">
+              <dc-import name="Mark" accent="#111111" hint-size="48px,48px"></dc-import>
+            </div>
+            <div style="font-family:'Space Grotesk',sans-serif; font-size:26px; font-weight:500; letter-spacing:-0.035em; line-height:1; color:#111111;">Standout <span style="font-weight:700;">Labs</span></div>
+          </div>
+        </div>
+        <div style="border-top:1px solid #EFEFEC; padding:12px 20px;">
+          <span style="font-size:10.5px; letter-spacing:0.14em; text-transform:uppercase; color:#9A9A94; font-weight:600;">05 — Monochrome</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- App icon + Social -->
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:22px;">
+      <div style="background:#FFFFFF; border:1px solid #E7E7E3; border-radius:14px; overflow:hidden; break-inside:avoid;">
+        <div style="display:flex; align-items:center; justify-content:center; gap:28px; padding:36px 20px;">
+          <div style="display:flex; flex-direction:column; align-items:center; gap:12px;">
+            <div style="width:82px; height:82px; background:#111111; border-radius:19px; display:flex; align-items:center; justify-content:center;">
+              <div style="color:#FFFFFF; width:44px; height:44px;">
+                <dc-import name="Mark" accent="#3B82F6" hint-size="44px,44px"></dc-import>
+              </div>
+            </div>
+            <span style="font-size:10.5px; color:#9A9A94;">App Icon</span>
+          </div>
+          <div style="display:flex; flex-direction:column; align-items:center; gap:12px;">
+            <div style="width:82px; height:82px; background:#FFFFFF; border:1px solid #E7E7E3; border-radius:19px; display:flex; align-items:center; justify-content:center;">
+              <div style="color:#111111; width:44px; height:44px;">
+                <dc-import name="Mark" accent="#3B82F6" hint-size="44px,44px"></dc-import>
+              </div>
+            </div>
+            <span style="font-size:10.5px; color:#9A9A94;">Light Icon</span>
+          </div>
+        </div>
+        <div style="border-top:1px solid #EFEFEC; padding:12px 20px;">
+          <span style="font-size:10.5px; letter-spacing:0.14em; text-transform:uppercase; color:#9A9A94; font-weight:600;">06 — App Icon / Favicon</span>
+        </div>
+      </div>
+      <div style="background:#FFFFFF; border:1px solid #E7E7E3; border-radius:14px; overflow:hidden; break-inside:avoid;">
+        <div style="display:flex; align-items:center; justify-content:center; gap:24px; padding:36px 20px;">
+          <div style="display:flex; flex-direction:column; align-items:center; gap:12px;">
+            <div style="width:88px; height:88px; background:#111111; border-radius:50%; display:flex; align-items:center; justify-content:center;">
+              <div style="color:#FFFFFF; width:46px; height:46px;">
+                <dc-import name="Mark" accent="#3B82F6" hint-size="46px,46px"></dc-import>
+              </div>
+            </div>
+            <span style="font-size:10.5px; color:#9A9A94;">Avatar</span>
+          </div>
+          <div style="display:flex; flex-direction:column; align-items:flex-start; gap:10px;">
+            <span style="font-size:10px; letter-spacing:0.12em; text-transform:uppercase; color:#B4B4AE; font-weight:600;">Scales to</span>
+            <div style="display:flex; align-items:flex-end; gap:14px; color:#111111;">
+              <div style="width:40px; height:40px;"><dc-import name="Mark" accent="#3B82F6" hint-size="40px,40px"></dc-import></div>
+              <div style="width:28px; height:28px;"><dc-import name="Mark" accent="#3B82F6" hint-size="28px,28px"></dc-import></div>
+              <div style="width:20px; height:20px;"><dc-import name="Mark" accent="#3B82F6" hint-size="20px,20px"></dc-import></div>
+              <div style="width:16px; height:16px;"><dc-import name="Mark" accent="#3B82F6" hint-size="16px,16px"></dc-import></div>
+            </div>
+            <span style="font-size:10.5px; color:#9A9A94;">40 · 28 · 20 · 16 px</span>
+          </div>
+        </div>
+        <div style="border-top:1px solid #EFEFEC; padding:12px 20px;">
+          <span style="font-size:10.5px; letter-spacing:0.14em; text-transform:uppercase; color:#9A9A94; font-weight:600;">07 — Social Profile</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Palette + Typography -->
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:22px;">
+      <div style="background:#FFFFFF; border:1px solid #E7E7E3; border-radius:14px; overflow:hidden; break-inside:avoid;">
+        <div style="padding:24px 24px 22px;">
+          <span style="font-size:10.5px; letter-spacing:0.14em; text-transform:uppercase; color:#9A9A94; font-weight:600;">Color</span>
+          <div style="display:flex; flex-direction:column; gap:12px; margin-top:16px;">
+            <div style="display:flex; align-items:center; gap:14px;">
+              <div style="width:42px; height:42px; border-radius:9px; background:#111111;"></div>
+              <div style="display:flex; flex-direction:column;"><span style="font-family:'Space Grotesk',sans-serif; font-weight:600; font-size:13.5px;">Matte Black</span><span style="font-size:11px; color:#9A9A94;">#111111 · primary</span></div>
+            </div>
+            <div style="display:flex; align-items:center; gap:14px;">
+              <div style="width:42px; height:42px; border-radius:9px; background:#FFFFFF; border:1px solid #E7E7E3;"></div>
+              <div style="display:flex; flex-direction:column;"><span style="font-family:'Space Grotesk',sans-serif; font-weight:600; font-size:13.5px;">Pure White</span><span style="font-size:11px; color:#9A9A94;">#FFFFFF · primary</span></div>
+            </div>
+            <div style="display:flex; align-items:center; gap:14px;">
+              <div style="width:42px; height:42px; border-radius:9px; background:#3B82F6;"></div>
+              <div style="display:flex; flex-direction:column;"><span style="font-family:'Space Grotesk',sans-serif; font-weight:600; font-size:13.5px;">Electric Blue</span><span style="font-size:11px; color:#9A9A94;">#3B82F6 · accent</span></div>
+            </div>
+          </div>
+        </div>
+        <div style="border-top:1px solid #EFEFEC; padding:12px 20px;">
+          <span style="font-size:10.5px; letter-spacing:0.14em; text-transform:uppercase; color:#9A9A94; font-weight:600;">08 — Palette</span>
+        </div>
+      </div>
+      <div style="background:#FFFFFF; border:1px solid #E7E7E3; border-radius:14px; overflow:hidden; break-inside:avoid;">
+        <div style="padding:24px 24px 22px;">
+          <span style="font-size:10.5px; letter-spacing:0.14em; text-transform:uppercase; color:#9A9A94; font-weight:600;">Typeface — Space Grotesk</span>
+          <div style="font-family:'Space Grotesk',sans-serif; font-size:38px; font-weight:600; letter-spacing:-0.03em; margin-top:14px; line-height:1;">Aa</div>
+          <div style="font-family:'Space Grotesk',sans-serif; font-size:12.5px; letter-spacing:0.01em; color:#5A5A55; margin-top:12px; line-height:1.5;">ABCDEFGHIJKLM<br>abcdefghijklm 1234567890</div>
+          <div style="display:flex; gap:9px; margin-top:16px; flex-wrap:wrap;">
+            <span style="font-family:'Space Grotesk',sans-serif; font-weight:400; font-size:11.5px; color:#8A8A85;">Regular</span>
+            <span style="font-family:'Space Grotesk',sans-serif; font-weight:500; font-size:11.5px; color:#8A8A85;">Medium</span>
+            <span style="font-family:'Space Grotesk',sans-serif; font-weight:600; font-size:11.5px; color:#111;">Semibold</span>
+            <span style="font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:11.5px; color:#111;">Bold</span>
+          </div>
+        </div>
+        <div style="border-top:1px solid #EFEFEC; padding:12px 20px;">
+          <span style="font-size:10.5px; letter-spacing:0.14em; text-transform:uppercase; color:#9A9A94; font-weight:600;">09 — Typography</span>
+        </div>
+      </div>
+    </div>
+
+    <div style="text-align:center; padding:6px 0; font-size:10.5px; color:#B4B4AE; letter-spacing:0.04em;">Standout Labs — remarkable, not ordinary.</div>
+
+  </div>
+</x-import>
+</x-dc>
+</body>
+</html>

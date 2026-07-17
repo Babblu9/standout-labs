@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 470 100" fill="none">
+
+<g>
+<rect x="12" y="63" width="16" height="16" rx="3.5" fill="#111111"></rect>
+<rect x="34" y="63" width="16" height="16" rx="3.5" fill="#111111"></rect>
+<rect x="56" y="63" width="16" height="16" rx="3.5" fill="#111111"></rect>
+<rect x="78" y="63" width="16" height="16" rx="3.5" fill="#111111"></rect>
+<rect x="44" y="21" width="18" height="18" rx="4" fill="#3B82F6"></rect>
+</g>
+<text x="120" y="66"><tspan font-weight="500" fill="#111111">Standout </tspan><tspan font-weight="700" fill="#3B82F6">Labs</tspan></text>
+</svg>

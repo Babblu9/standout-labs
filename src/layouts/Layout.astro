@@ -1,0 +1,93 @@
+---
+import '../styles/global.css';
+import CustomCursor from '../components/CustomCursor.tsx';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { 
+  title = "Standout Labs — Growth & Brand Systems Studio", 
+  description = "We build brand and growth engines that make your business impossible to ignore. AI-powered branding, custom web applications, content automation, marketing funnels, and CRM workflows." 
+} = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    
+    <!-- Primary Meta Tags -->
+    <title>{title}</title>
+    <meta name="title" content={title} />
+    <meta name="description" content={description} />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={Astro.url} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={Astro.url} />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  </head>
+  <body class="bg-brand-bg text-brand-black antialiased selection:bg-brand-blue selection:text-brand-white">
+    <!-- Premium custom cursor -->
+    <CustomCursor client:load />
+
+    <!-- Site Wrapper -->
+    <div class="relative min-h-screen flex flex-col">
+      <main class="flex-grow">
+        <slot />
+      </main>
+    </div>
+
+    <!-- Lenis Smooth Scroll Script -->
+    <script>
+      import Lenis from 'lenis';
+
+      // Initialize Lenis smooth scroll
+      const lenis = new Lenis({
+        duration: 1.2,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        direction: 'vertical',
+        gestureDirection: 'vertical',
+        smoothWheel: true,
+        wheelMultiplier: 1,
+        touchMultiplier: 2,
+        infinite: false,
+      });
+
+      // Update Lenis scroll frame
+      function raf(time: number) {
+        lenis.raf(time);
+        requestAnimationFrame(raf);
+      }
+      requestAnimationFrame(raf);
+
+      // Make lenis globally accessible for other animations (like scroll sync)
+      window.lenisInstance = lenis;
+    </script>
+  </body>
+</html>
+
+<style is:global>
+  /* Define TS/JS interface for window.lenisInstance */
+  declare global {
+    interface Window {
+      lenisInstance: any;
+    }
+  }
+</style>

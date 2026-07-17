@@ -1,0 +1,22 @@
+---
+import Timeline from './Timeline.tsx';
+---
+
+<section id="services" class="w-full py-24 md:py-32 bg-brand-bg relative overflow-hidden border-b border-[#E3E3DF]/50 scroll-mt-20">
+  <div class="absolute inset-0 grid-bg opacity-30 pointer-events-none"></div>
+
+  <div class="w-full max-w-7xl mx-auto px-6 md:px-12 flex flex-col gap-16 relative z-10">
+    <div class="flex flex-col gap-4 max-w-3xl">
+      <span class="text-xs font-bold uppercase tracking-[0.3em] text-brand-blue">Everything your business needs to stand out</span>
+      <h2 class="font-display font-bold text-4xl sm:text-5xl md:text-6xl tracking-tight text-brand-black leading-[0.95]">
+        We Build Growth Systems
+      </h2>
+      <p class="text-brand-gray text-base sm:text-lg max-w-xl leading-relaxed mt-2 font-sans">
+        Select a growth system to reveal the specific deliverables we engineer and coordinate to make your brand impossible to ignore.
+      </p>
+    </div>
+
+    {/* Expandable Outcome grid */}
+    <Timeline client:load />
+  </div>
+</section>
