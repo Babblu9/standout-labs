@@ -1,30 +1,34 @@
 ---
-// Real clients + factual descriptions of what we built. No invented quotes.
-// Swap any entry for a real client quote (add `quote` + `author`) when you have one.
+// Real clients & products, factual descriptions of what we built. No invented quotes.
+// Add `url` only where the deployment is public. Add a real quote later to upgrade an entry.
 const clients = [
   {
-    name: "OnEasy — Fina AI",
-    sector: "AI SaaS · Fintech",
-    line: "An AI financial-model builder that turns a business idea into a complete, formula-driven model in seconds.",
+    name: "OnEasy",
+    sector: "AI Finance · Fintech",
+    line: "An AI system that builds a company’s full financial model and unit-economics workbook from a single prompt — replacing hours of manual Excel work.",
     url: "https://oneasy-hazel.vercel.app",
   },
   {
-    name: "Vishala Shopping Mall",
-    sector: "Retail · Internal Systems",
-    line: "A secure daily counter-closing and bookkeeping portal with role-based access and full audit logging across branches.",
-    url: "https://vishalashoppingmalls-counterflow.vercel.app",
+    name: "Vishala Shopping Malls",
+    sector: "Retail · Operations",
+    line: "One portal to manage every counter’s daily closing, with role-based access and full audit logging — replacing manual spreadsheets.",
+  },
+  {
+    name: "Being Wise",
+    sector: "Education · Admissions",
+    line: "A real-time counselling platform: students get a matched list of colleges they’re eligible for, with the full guidance flow handled by an embeddable plugin.",
+  },
+  {
+    name: "NearLead",
+    sector: "Growth · Our Product",
+    line: "Our own local-lead engine — find businesses by keyword and area, dedupe, enrich emails, and track outreach from search to CRM.",
+    url: "https://nearlead.vercel.app",
   },
   {
     name: "Aurelius Academy",
     sector: "Education · Hyderabad",
     line: "A premium brand landing site for a global-studies academy — SAT, IELTS, AP, and university admissions.",
     url: "https://aureliua.vercel.app",
-  },
-  {
-    name: "NearLead",
-    sector: "Growth · Lead Generation",
-    line: "A local-business lead engine that finds, dedupes, enriches, and tracks outreach — from search to CRM.",
-    url: "https://nearlead.vercel.app",
   },
 ];
 ---
@@ -37,30 +41,42 @@ const clients = [
         Businesses we've built for
       </h2>
       <p class="text-neutral-700 text-lg leading-relaxed font-sans">
-        Real products, live in the wild — from AI SaaS to retail operations and lead generation.
+        Real products, live and in use — from AI finance and retail operations to admissions and lead generation.
         Every one is a system we designed, built, and shipped.
       </p>
     </div>
 
     {/* Client roster */}
-    <div class="grid grid-cols-1 md:grid-cols-2 border-t border-l border-[#E3E3DF]">
-      {clients.map((c) => (
-        <a
-          href={c.url}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="group flex flex-col gap-3 p-8 md:p-10 border-b border-r border-[#E3E3DF] hover:bg-brand-bg transition-colors cursor-none"
-        >
-          <div class="flex items-baseline justify-between gap-4">
-            <h3 class="font-display font-bold text-2xl md:text-3xl text-brand-black tracking-tight group-hover:text-brand-blue transition-colors">
-              {c.name}
-            </h3>
-            <span class="text-neutral-400 text-lg group-hover:text-brand-blue transition-colors">↗</span>
-          </div>
-          <span class="text-xs font-semibold uppercase tracking-widest text-brand-blue">{c.sector}</span>
-          <p class="text-neutral-700 text-base leading-relaxed font-sans max-w-md">{c.line}</p>
-        </a>
-      ))}
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 border-t border-l border-[#E3E3DF]">
+      {clients.map((c) => {
+        const Tag = c.url ? 'a' : 'div';
+        return (
+          <Tag
+            href={c.url}
+            target={c.url ? '_blank' : undefined}
+            rel={c.url ? 'noopener noreferrer' : undefined}
+            class={`group flex flex-col gap-3 p-8 md:p-10 border-b border-r border-[#E3E3DF] transition-colors ${c.url ? 'hover:bg-brand-bg cursor-none' : ''}`}
+          >
+            <div class="flex items-baseline justify-between gap-4">
+              <h3 class="font-display font-bold text-2xl md:text-3xl text-brand-black tracking-tight group-hover:text-brand-blue transition-colors">
+                {c.name}
+              </h3>
+              {c.url && <span class="text-neutral-400 text-lg group-hover:text-brand-blue transition-colors">↗</span>}
+            </div>
+            <span class="text-xs font-semibold uppercase tracking-widest text-brand-blue">{c.sector}</span>
+            <p class="text-neutral-700 text-base leading-relaxed font-sans max-w-md">{c.line}</p>
+          </Tag>
+        );
+      })}
+
+      {/* CTA cell */}
+      <a
+        href="mailto:info@standoutlabs.in"
+        class="group flex flex-col justify-center gap-3 p-8 md:p-10 border-b border-r border-[#E3E3DF] bg-brand-black text-white hover:bg-brand-blue transition-colors cursor-none"
+      >
+        <h3 class="font-display font-bold text-2xl md:text-3xl tracking-tight">Your product, next.</h3>
+        <span class="text-sm font-semibold text-white/90 inline-flex items-center gap-1.5">Start a project →</span>
+      </a>
     </div>
 
   </div>

@@ -11,7 +11,7 @@ interface Project {
   result: string;
   image: string;
   imgPos: string;
-  url: string;
+  url?: string; // omit to keep the deployment private (no live link, screenshot only)
 }
 
 export default function HorizontalPortfolio() {
@@ -19,28 +19,40 @@ export default function HorizontalPortfolio() {
 
   const projects: Project[] = [
     {
-      name: 'OnEasy — Fina AI',
-      industry: 'AI SaaS · Fintech',
+      name: 'OnEasy',
+      industry: 'AI Finance · Fintech',
       bg: 'bg-white',
       textLight: false,
-      challenge: 'Founders need investor-ready financial models but rarely have the time or finance background to build one.',
-      solution: 'Built an AI model builder on Next.js with the Vercel AI SDK (Anthropic + OpenAI), Neon and Drizzle — describe a business and it returns a complete, formula-driven model.',
-      result: 'Idea → full model in 30s',
+      challenge: 'OnEasy’s analysts built financial models and unit-economics sheets by hand — typing every number into Excel, company after company.',
+      solution: 'Built an AI system that generates a complete financial model and a full unit-economics workbook from a single prompt. Describe the company; get the formula-driven Excel back — shipped as Fina AI and UnitFlow.',
+      result: 'Full model from one prompt',
       image: '/images/portfolio/oneasy.png',
       imgPos: 'object-center',
       url: 'https://oneasy-hazel.vercel.app',
     },
     {
-      name: 'Vishala Shopping Mall',
-      industry: 'Retail · Internal Systems',
+      name: 'Vishala Shopping Malls',
+      industry: 'Retail · Operations',
       bg: 'bg-[#3a0d0d]',
       textLight: true,
-      challenge: 'Multi-branch mall counters closed their books by hand every day — slow, error-prone, and with no audit trail.',
-      solution: 'Built a secure counter-closing portal (Next 15, Prisma, JWT auth) with role-based access, Excel-based closing, and full audit logging across branches.',
-      result: 'Daily closings, fully audited',
+      challenge: 'Vishala closed every counter’s books in manual Excel sheets — no single source of truth, and no audit trail across branches.',
+      solution: 'Built one portal that manages all counter flows end to end: daily closing, role-based access, and full audit logging — replacing the manual spreadsheets entirely.',
+      result: 'All counters, one portal',
       image: '/images/portfolio/vishala.png',
       imgPos: 'object-top',
-      url: 'https://vishalashoppingmalls-counterflow.vercel.app',
+      // deployed, but client link kept private
+    },
+    {
+      name: 'NearLead',
+      industry: 'Growth · Our Product',
+      bg: 'bg-white',
+      textLight: false,
+      challenge: 'Finding local prospects means hours of manual searching, then losing them across scattered spreadsheets.',
+      solution: 'Our own lead engine: pull local businesses from Google Maps & OpenStreetMap by keyword and area, dedupe into a database, enrich emails, and track outreach — search to CRM in one flow.',
+      result: 'Search → enrich → outreach',
+      image: '/images/portfolio/nearlead.png',
+      imgPos: 'object-top',
+      url: 'https://nearlead.vercel.app',
     },
     {
       name: 'Aurelius Academy',
@@ -54,23 +66,10 @@ export default function HorizontalPortfolio() {
       imgPos: 'object-top',
       url: 'https://aureliua.vercel.app',
     },
-    {
-      name: 'NearLead',
-      industry: 'Growth · Lead Generation',
-      bg: 'bg-white',
-      textLight: false,
-      challenge: 'Sales teams burned hours hunting local prospects and then lost them across scattered spreadsheets.',
-      solution: 'Built a lead engine that pulls local businesses from Google Maps & OpenStreetMap by keyword and area, dedupes them into a database, enriches emails, and tracks outreach.',
-      result: 'Find → enrich → outreach',
-      image: '/images/portfolio/nearlead.png',
-      imgPos: 'object-top',
-      url: 'https://nearlead.vercel.app',
-    },
   ];
 
   const count = projects.length;
 
-  // Vertical scroll drives the horizontal rail across all slides.
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ['start start', 'end end'],
@@ -91,7 +90,6 @@ export default function HorizontalPortfolio() {
                 project.textLight ? 'text-brand-white' : 'text-brand-black'
               }`}
             >
-              {/* Slide meta */}
               <div className="absolute top-8 left-6 md:left-16 lg:left-24 flex items-center gap-6 z-20">
                 <span className="text-xs font-bold uppercase tracking-wider text-brand-blue">Selected Work</span>
                 <span className={`text-xs tabular-nums ${project.textLight ? 'text-white/50' : 'text-neutral-500'}`}>
@@ -121,44 +119,50 @@ export default function HorizontalPortfolio() {
                         <h4 className="text-[10px] font-bold uppercase tracking-wider text-brand-blue mb-1">Outcome</h4>
                         <p className="font-display font-bold text-lg md:text-xl">{project.result}</p>
                       </div>
-                      <a
-                        href={project.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className={`inline-flex items-center gap-1.5 text-sm font-semibold px-5 py-2.5 rounded-full transition-colors cursor-none ${
-                          project.textLight ? 'bg-white text-brand-black hover:bg-brand-blue hover:text-white' : 'bg-brand-black text-white hover:bg-brand-blue'
-                        }`}
-                      >
-                        View live ↗
-                      </a>
+                      {project.url && (
+                        <a
+                          href={project.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className={`inline-flex items-center gap-1.5 text-sm font-semibold px-5 py-2.5 rounded-full transition-colors cursor-none ${
+                            project.textLight ? 'bg-white text-brand-black hover:bg-brand-blue hover:text-white' : 'bg-brand-black text-white hover:bg-brand-blue'
+                          }`}
+                        >
+                          View live ↗
+                        </a>
+                      )}
                     </div>
                   </div>
                 </div>
 
                 {/* Right: real screenshot in a browser frame */}
                 <div className="lg:col-span-7 flex justify-center">
-                  <a
-                    href={project.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group relative w-full max-w-[640px] rounded-xl border border-black/10 shadow-[0_24px_60px_rgba(0,0,0,0.22)] overflow-hidden bg-white cursor-none"
-                  >
-                    {/* Browser chrome */}
-                    <div className="flex items-center gap-1.5 px-4 h-9 bg-[#f3f3f1] border-b border-black/5">
-                      <span className="w-2.5 h-2.5 rounded-full bg-[#ff5f57]"></span>
-                      <span className="w-2.5 h-2.5 rounded-full bg-[#febc2e]"></span>
-                      <span className="w-2.5 h-2.5 rounded-full bg-[#28c840]"></span>
-                      <span className="ml-3 text-[11px] text-neutral-500 truncate font-sans">{project.url.replace('https://', '')}</span>
-                    </div>
-                    <div className="aspect-[4/3] overflow-hidden">
-                      <img
-                        src={project.image}
-                        alt={`${project.name} — live website screenshot`}
-                        loading="lazy"
-                        className={`w-full h-full object-cover ${project.imgPos} transition-transform duration-500 group-hover:scale-[1.02]`}
-                      />
-                    </div>
-                  </a>
+                  {(() => {
+                    const frame = (
+                      <div className="group relative w-full max-w-[640px] rounded-xl border border-black/10 shadow-[0_24px_60px_rgba(0,0,0,0.22)] overflow-hidden bg-white">
+                        <div className="flex items-center gap-1.5 px-4 h-9 bg-[#f3f3f1] border-b border-black/5">
+                          <span className="w-2.5 h-2.5 rounded-full bg-[#ff5f57]"></span>
+                          <span className="w-2.5 h-2.5 rounded-full bg-[#febc2e]"></span>
+                          <span className="w-2.5 h-2.5 rounded-full bg-[#28c840]"></span>
+                        </div>
+                        <div className="aspect-[4/3] overflow-hidden">
+                          <img
+                            src={project.image}
+                            alt={`${project.name} — product screenshot`}
+                            loading="lazy"
+                            className={`w-full h-full object-cover ${project.imgPos} transition-transform duration-500 group-hover:scale-[1.02]`}
+                          />
+                        </div>
+                      </div>
+                    );
+                    return project.url ? (
+                      <a href={project.url} target="_blank" rel="noopener noreferrer" className="w-full flex justify-center cursor-none">
+                        {frame}
+                      </a>
+                    ) : (
+                      frame
+                    );
+                  })()}
                 </div>
               </div>
             </div>
