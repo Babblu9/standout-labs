@@ -28,7 +28,7 @@ export default function HorizontalPortfolio() {
       result: 'Full model from one prompt',
       image: '/images/portfolio/oneasy.png',
       imgPos: 'object-center',
-      url: 'https://oneasy-hazel.vercel.app',
+      url: 'https://www.oneasy.ai/',
     },
     {
       name: 'Vishala Shopping Malls',
@@ -40,19 +40,7 @@ export default function HorizontalPortfolio() {
       result: 'All counters, one portal',
       image: '/images/portfolio/vishala.png',
       imgPos: 'object-top',
-      // deployed, but client link kept private
-    },
-    {
-      name: 'NearLead',
-      industry: 'Growth · Our Product',
-      bg: 'bg-white',
-      textLight: false,
-      challenge: 'Finding local prospects means hours of manual searching, then losing them across scattered spreadsheets.',
-      solution: 'Our own lead engine: pull local businesses from Google Maps & OpenStreetMap by keyword and area, dedupe into a database, enrich emails, and track outreach — search to CRM in one flow.',
-      result: 'Search → enrich → outreach',
-      image: '/images/portfolio/nearlead.png',
-      imgPos: 'object-top',
-      url: 'https://nearlead.vercel.app',
+      url: 'https://vishalashoppingmall.in',
     },
     {
       name: 'beingWise',
