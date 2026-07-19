@@ -88,27 +88,28 @@ export default function HeroGrid() {
       </div>
 
       {/* Foreground Copy & Animations */}
-      <div className="relative z-10 w-full max-w-5xl mx-auto flex flex-col items-center text-center gap-12 pointer-events-auto">
-        <div className="flex flex-col gap-6 md:gap-8">
-          <motion.span 
+      <div className="relative z-10 w-full max-w-5xl mx-auto flex flex-col items-center text-center gap-10 pointer-events-auto">
+        <div className="flex flex-col items-center gap-6 md:gap-8">
+          <motion.span
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 0.8 }}
-            className="text-xs font-bold uppercase tracking-[0.3em] text-brand-blue"
+            className="inline-flex items-center gap-2 rounded-full border border-[#E3E3DF] bg-white/70 backdrop-blur-sm px-4 py-1.5 text-sm font-medium text-neutral-700 font-sans"
           >
-            Growth & Brand Systems Studio
+            <span className="w-1.5 h-1.5 rounded-full bg-brand-blue"></span>
+            Digital marketing &amp; AI branding studio — Hyderabad
           </motion.span>
-          
+
           <div className="flex flex-col gap-2 md:gap-4">
-            <motion.h1 
+            <motion.h1
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4, duration: 1, ease: [0.16, 1, 0.3, 1] }}
-              className="font-display font-bold text-5xl sm:text-7xl md:text-8xl lg:text-[100px] leading-[0.95] tracking-tight text-brand-black"
+              className="font-display font-bold text-5xl sm:text-7xl md:text-8xl lg:text-[100px] leading-[0.95] tracking-tight text-brand-black text-balance"
             >
               Most brands blend in.
             </motion.h1>
-            <motion.h1 
+            <motion.h1
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6, duration: 1, ease: [0.16, 1, 0.3, 1] }}
@@ -123,10 +124,31 @@ export default function HeroGrid() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.9, duration: 1 }}
-          className="text-neutral-600 text-base md:text-xl max-w-xl leading-relaxed font-sans"
+          className="text-neutral-700 text-base md:text-xl max-w-2xl leading-relaxed font-sans"
         >
-          We engineer brand guidelines, performance websites, and AI systems to make your business impossible to ignore.
+          A Hyderabad growth studio that builds brand, websites, performance marketing,
+          and AI systems into one engine — so your business is impossible to ignore.
         </motion.p>
+
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1.1, duration: 0.8 }}
+          className="flex flex-col sm:flex-row items-center gap-4 mt-2"
+        >
+          <a
+            href="mailto:info@standoutlabs.in"
+            className="inline-flex items-center justify-center bg-brand-black hover:bg-brand-blue text-white text-base font-semibold px-8 py-4 rounded-full transition-colors cursor-none shadow-md"
+          >
+            Start your project →
+          </a>
+          <a
+            href="/services/"
+            className="inline-flex items-center justify-center border border-[#D8D8D2] hover:border-brand-black text-brand-black text-base font-semibold px-8 py-4 rounded-full transition-colors cursor-none"
+          >
+            Explore services
+          </a>
+        </motion.div>
       </div>
     </div>
   );
