@@ -55,6 +55,18 @@ export default function HorizontalPortfolio() {
       url: 'https://nearlead.vercel.app',
     },
     {
+      name: 'beingWise',
+      industry: 'EdTech · Our Product',
+      bg: 'bg-white',
+      textLight: false,
+      challenge: 'TS & AP EAMCET students rely on rank predictors that only guess where they might get in — then freeze the wrong web-options and lose the right seat.',
+      solution: 'Built beingWise: enter rank, category and branch preferences and it returns the exact ordered web-options list to freeze, with a Decision Copilot that flags every mistake before you lock.',
+      result: '25,000+ students, right seat',
+      image: '/images/portfolio/beingwise.png',
+      imgPos: 'object-top',
+      url: 'https://bestcollegeindia.com/',
+    },
+    {
       name: 'Aurelius Academy',
       industry: 'Education · Hyderabad',
       bg: 'bg-[#0f1830]',
