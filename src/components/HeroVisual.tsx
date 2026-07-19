@@ -71,7 +71,7 @@ export default function HeroVisual() {
         </svg>
         
         {/* Helper microcopy */}
-        <span className="text-xs font-semibold uppercase tracking-[0.2em] text-brand-gray/80 text-center select-none">
+        <span className="text-xs font-semibold uppercase tracking-[0.2em] text-neutral-600/80 text-center select-none">
           Standout Labs identity mark
         </span>
       </motion.div>

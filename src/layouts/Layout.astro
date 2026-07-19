@@ -5,12 +5,78 @@ import CustomCursor from '../components/CustomCursor.tsx';
 interface Props {
   title?: string;
   description?: string;
+  /** Path or absolute URL for <link rel="canonical">. Defaults to the current page. */
+  canonical?: string;
+  /** OG/Twitter share image (path or absolute URL). */
+  ogImage?: string;
+  /** Extra JSON-LD nodes to append to the graph (e.g. a Service or FAQPage). */
+  jsonLd?: Record<string, unknown> | Record<string, unknown>[];
+  /** Set true on thin/utility pages you don't want indexed. */
+  noindex?: boolean;
 }
 
-const { 
-  title = "Standout Labs — Growth & Brand Systems Studio", 
-  description = "We build brand and growth engines that make your business impossible to ignore. AI-powered branding, custom web applications, content automation, marketing funnels, and CRM workflows." 
+const {
+  title = "Digital Marketing & AI Branding Agency in Hyderabad | Standout Labs",
+  description = "Standout Labs is a Hyderabad-based digital marketing and AI branding studio. We build brand identity, high-converting websites, performance marketing, content, and AI automation that make your business impossible to ignore.",
+  canonical,
+  ogImage = "/brand-assets/png/logo-2048.png",
+  jsonLd,
+  noindex = false,
 } = Astro.props;
+
+const site = Astro.site ?? new URL("https://standoutlabs.in");
+const canonicalURL = new URL(canonical ?? Astro.url.pathname, site);
+const ogImageURL = new URL(ogImage, site);
+
+// Organization / LocalBusiness graph — the backbone of local SEO for "digital marketing in Hyderabad".
+const orgLd = {
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "@id": `${site.origin}/#organization`,
+  name: "Standout Labs",
+  alternateName: "StandoutLabs",
+  description,
+  url: site.origin,
+  logo: `${site.origin}/brand-assets/png/logo-2048.png`,
+  image: ogImageURL.href,
+  email: "info@standoutlabs.in",
+  telephone: "+91-99634-91075",
+  priceRange: "₹₹",
+  areaServed: [
+    { "@type": "City", name: "Hyderabad" },
+    { "@type": "State", name: "Telangana" },
+    { "@type": "Country", name: "India" },
+  ],
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Hyderabad",
+    addressRegion: "Telangana",
+    addressCountry: "IN",
+  },
+  sameAs: [],
+  knowsAbout: [
+    "Digital Marketing",
+    "AI Branding",
+    "Brand Identity",
+    "Web Design & Development",
+    "Performance Marketing",
+    "SEO",
+    "Content Marketing",
+    "Marketing Automation",
+  ],
+};
+
+const websiteLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": `${site.origin}/#website`,
+  url: site.origin,
+  name: "Standout Labs",
+  publisher: { "@id": `${site.origin}/#organization` },
+  inLanguage: "en-IN",
+};
+
+const graph = [orgLd, websiteLd, ...(jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [])];
 ---
 
 <!DOCTYPE html>
@@ -20,23 +86,36 @@ const {
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
-    
+
     <!-- Primary Meta Tags -->
     <title>{title}</title>
     <meta name="title" content={title} />
     <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL.href} />
+    <meta name="robots" content={noindex ? "noindex, nofollow" : "index, follow, max-image-preview:large"} />
+    <meta name="theme-color" content="#111111" />
+    <meta name="author" content="Standout Labs" />
+    <meta name="geo.region" content="IN-TG" />
+    <meta name="geo.placename" content="Hyderabad" />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
-    <meta property="og:url" content={Astro.url} />
+    <meta property="og:site_name" content="Standout Labs" />
+    <meta property="og:locale" content="en_IN" />
+    <meta property="og:url" content={canonicalURL.href} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImageURL.href} />
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content={Astro.url} />
+    <meta property="twitter:url" content={canonicalURL.href} />
     <meta property="twitter:title" content={title} />
     <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={ogImageURL.href} />
+
+    <!-- Structured data -->
+    <script type="application/ld+json" set:html={JSON.stringify(graph)} />
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -58,27 +137,30 @@ const {
     <script>
       import Lenis from 'lenis';
 
-      // Initialize Lenis smooth scroll
-      const lenis = new Lenis({
-        duration: 1.2,
-        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-        direction: 'vertical',
-        gestureDirection: 'vertical',
-        smoothWheel: true,
-        wheelMultiplier: 1,
-        touchMultiplier: 2,
-        infinite: false,
-      });
+      // Respect reduced-motion: skip smooth-scroll hijacking entirely.
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-      // Update Lenis scroll frame
-      function raf(time: number) {
-        lenis.raf(time);
+      if (!prefersReducedMotion) {
+        const lenis = new Lenis({
+          duration: 1.2,
+          easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+          orientation: 'vertical',
+          gestureOrientation: 'vertical',
+          smoothWheel: true,
+          wheelMultiplier: 1,
+          touchMultiplier: 2,
+          infinite: false,
+        });
+
+        function raf(time: number) {
+          lenis.raf(time);
+          requestAnimationFrame(raf);
+        }
         requestAnimationFrame(raf);
-      }
-      requestAnimationFrame(raf);
 
-      // Make lenis globally accessible for other animations (like scroll sync)
-      window.lenisInstance = lenis;
+        // Make lenis globally accessible for other animations (like scroll sync)
+        window.lenisInstance = lenis;
+      }
     </script>
   </body>
 </html>

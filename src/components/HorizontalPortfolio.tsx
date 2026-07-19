@@ -100,13 +100,13 @@ export default function HorizontalPortfolio() {
                     <div className="border-t border-[#E3E3DF]/25 pt-6 flex flex-col gap-4">
                       <div>
                         <h4 className="text-[10px] font-bold uppercase tracking-wider text-brand-gray mb-1">Challenge</h4>
-                        <p className={`text-sm md:text-base leading-relaxed ${project.textLight ? 'text-brand-white/70' : 'text-brand-gray'}`}>
+                        <p className={`text-sm md:text-base leading-relaxed ${project.textLight ? 'text-brand-white/70' : 'text-neutral-700'}`}>
                           {project.challenge}
                         </p>
                       </div>
                       <div>
                         <h4 className="text-[10px] font-bold uppercase tracking-wider text-brand-gray mb-1">Solution</h4>
-                        <p className={`text-sm md:text-base leading-relaxed ${project.textLight ? 'text-brand-white/70' : 'text-brand-gray'}`}>
+                        <p className={`text-sm md:text-base leading-relaxed ${project.textLight ? 'text-brand-white/70' : 'text-neutral-700'}`}>
                           {project.solution}
                         </p>
                       </div>

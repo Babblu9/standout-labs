@@ -123,7 +123,7 @@ export default function HeroGrid() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.9, duration: 1 }}
-          className="text-brand-gray text-base md:text-xl max-w-xl leading-relaxed font-sans"
+          className="text-neutral-600 text-base md:text-xl max-w-xl leading-relaxed font-sans"
         >
           We engineer brand guidelines, performance websites, and AI systems to make your business impossible to ignore.
         </motion.p>

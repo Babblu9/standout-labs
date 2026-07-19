@@ -157,7 +157,7 @@ export default function Timeline() {
                   <h3 className="font-display font-bold text-3xl text-brand-black tracking-tight group-hover:text-brand-blue transition-colors">
                     {card.title}
                   </h3>
-                  <p className="text-brand-gray text-base leading-relaxed max-w-sm">
+                  <p className="text-neutral-600 text-base leading-relaxed max-w-sm">
                     {card.tagline}
                   </p>
                 </div>
@@ -182,7 +182,7 @@ export default function Timeline() {
                       {/* Grid of sub-services */}
                       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-4">
                         {card.services.map((service) => (
-                          <div key={service} className="flex items-center gap-3 text-brand-gray text-sm md:text-base">
+                          <div key={service} className="flex items-center gap-3 text-neutral-600 text-sm md:text-base">
                             <span className="w-1.5 h-1.5 rounded-full bg-brand-blue inline-block flex-shrink-0"></span>
                             <span>{service}</span>
                           </div>

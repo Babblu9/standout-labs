@@ -48,7 +48,7 @@ export default function SplitStory() {
           {/* Left Column: Big typography */}
           <div className="lg:col-span-6 flex flex-col gap-6 md:gap-10 text-left">
             <motion.div style={{ opacity: text1Opacity }} className="flex flex-col gap-1">
-              <span className="text-xs font-bold uppercase tracking-[0.25em] text-brand-gray">
+              <span className="text-xs font-bold uppercase tracking-[0.25em] text-neutral-600">
                 Modern Leverage
               </span>
               <h2 className="font-display font-bold text-4xl sm:text-6xl tracking-tight text-brand-black leading-[0.95] max-w-lg">
@@ -172,7 +172,7 @@ export default function SplitStory() {
               </svg>
               
               {/* Helper badge */}
-              <div className="absolute bottom-4 right-4 bg-white/80 border border-[#E3E3DF] rounded px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-brand-gray backdrop-blur-sm">
+              <div className="absolute bottom-4 right-4 bg-white/80 border border-[#E3E3DF] rounded px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-neutral-600 backdrop-blur-sm">
                 Interactive flow assembly
               </div>
             </div>

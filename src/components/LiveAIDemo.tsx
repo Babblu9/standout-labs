@@ -122,19 +122,19 @@ export default function LiveAIDemo() {
                     <div className="mt-3 border-t border-[#E3E3DF] pt-3 flex flex-col gap-3.5 text-brand-black">
                       <div className="flex flex-col gap-1">
                         <span className="text-[10px] font-bold text-brand-blue uppercase">01 · Branding</span>
-                        <p className="text-[11px] leading-relaxed text-brand-gray font-sans">{msg.rec.branding}</p>
+                        <p className="text-[11px] leading-relaxed text-neutral-700 font-sans">{msg.rec.branding}</p>
                       </div>
                       <div className="flex flex-col gap-1">
                         <span className="text-[10px] font-bold text-brand-blue uppercase">02 · Web Presence</span>
-                        <p className="text-[11px] leading-relaxed text-brand-gray font-sans">{msg.rec.website}</p>
+                        <p className="text-[11px] leading-relaxed text-neutral-700 font-sans">{msg.rec.website}</p>
                       </div>
                       <div className="flex flex-col gap-1">
                         <span className="text-[10px] font-bold text-brand-blue uppercase">03 · Marketing</span>
-                        <p className="text-[11px] leading-relaxed text-brand-gray font-sans">{msg.rec.marketing}</p>
+                        <p className="text-[11px] leading-relaxed text-neutral-700 font-sans">{msg.rec.marketing}</p>
                       </div>
                       <div className="flex flex-col gap-1">
                         <span className="text-[10px] font-bold text-brand-blue uppercase">04 · Automation</span>
-                        <p className="text-[11px] leading-relaxed text-brand-gray font-sans">{msg.rec.automation}</p>
+                        <p className="text-[11px] leading-relaxed text-neutral-700 font-sans">{msg.rec.automation}</p>
                       </div>
                     </div>
                   )}

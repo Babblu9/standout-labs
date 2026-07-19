@@ -1,0 +1,254 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import MagneticButton from '../components/MagneticButton.tsx';
+
+const title = "Digital Marketing Services in Hyderabad | Standout Labs";
+const description =
+  "Full-service digital marketing in Hyderabad: brand identity, web design & development, performance marketing, content, SEO, and AI automation. Standout Labs builds growth systems that make your business impossible to ignore.";
+
+const services = [
+  {
+    num: '01',
+    title: 'Brand & Identity',
+    lead: 'Build a brand people remember — and trust — the moment they see it.',
+    body: 'Positioning, naming, and a complete visual identity engineered so your business looks like the leader in your category, not a follower.',
+    deliverables: ['Brand Strategy', 'Naming', 'Logo & Identity', 'Brand Guidelines', 'Packaging', 'Pitch Decks'],
+  },
+  {
+    num: '02',
+    title: 'Web Design & Development',
+    lead: 'A website that ranks, loads fast, and turns visitors into enquiries.',
+    body: 'Design-led, conversion-focused websites and landing pages built on modern stacks, with technical SEO and local SEO baked in from the first line of code.',
+    deliverables: ['Website Design', 'Web Development', 'Landing Pages', 'UI/UX Design', 'E-commerce', 'SEO & Local SEO'],
+  },
+  {
+    num: '03',
+    title: 'Content & Social',
+    lead: 'Reach the right people in Hyderabad and beyond — consistently.',
+    body: 'Social media, video, and content marketing that builds an audience and keeps your brand in the conversation, not lost in the feed.',
+    deliverables: ['Social Media', 'Content Marketing', 'Video & Reels', 'Motion Graphics', 'Photography', 'Email Marketing'],
+  },
+  {
+    num: '04',
+    title: 'Performance Marketing',
+    lead: 'Turn ad spend and traffic into measurable customers.',
+    body: 'Meta, Google, and LinkedIn campaigns run against real revenue targets — with conversion tracking, funnels, and analytics so every rupee is accountable.',
+    deliverables: ['Meta Ads', 'Google Ads', 'LinkedIn Ads', 'Conversion Optimisation', 'Analytics Setup', 'Lead Generation'],
+  },
+  {
+    num: '05',
+    title: 'AI Systems & Automation',
+    lead: 'Automate the busywork and scale operations without scaling headcount.',
+    body: 'Custom AI agents, CRM and WhatsApp automation, and internal tools that give a small team the leverage of a large one.',
+    deliverables: ['AI Agents', 'CRM Automation', 'WhatsApp Automation', 'Voice AI', 'Chatbots', 'Custom AI Tools'],
+  },
+  {
+    num: '06',
+    title: 'Brand Experiences',
+    lead: 'Premium touchpoints for the moments that happen offline.',
+    body: 'Event branding, activations, and out-of-home campaigns that carry your brand into the physical world with the same polish as the digital one.',
+    deliverables: ['Event Branding', 'Exhibition Design', 'Experiential Marketing', 'OOH Campaigns', 'Brand Activations'],
+  },
+];
+
+const faqs = [
+  {
+    q: 'Do you work with businesses based in Hyderabad?',
+    a: 'Yes. Standout Labs is a Hyderabad-based studio and we work closely with local founders and businesses across Telangana, as well as clients across India and abroad. Being local means faster collaboration, in-person strategy sessions, and marketing that understands the Hyderabad market.',
+  },
+  {
+    q: 'What does a digital marketing engagement typically include?',
+    a: 'Most engagements combine positioning and brand, a conversion-focused website, and an ongoing growth engine — performance ads, content, SEO, and automation. We scope the exact mix to your goals rather than selling a fixed package.',
+  },
+  {
+    q: 'How is Standout Labs different from a typical agency?',
+    a: 'We build systems, not one-off deliverables. Brand, web, marketing, and AI automation are designed to work together as a single growth engine, and everything is measured against business outcomes — enquiries and revenue, not vanity metrics.',
+  },
+  {
+    q: 'How quickly can we get started?',
+    a: 'Discovery usually begins within a week of your first enquiry. Timelines depend on scope, but brand and website projects typically run 4–8 weeks, while marketing and automation systems go live in stages so you see results early.',
+  },
+];
+
+const breadcrumbLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://standoutlabs.in/' },
+    { '@type': 'ListItem', position: 2, name: 'Services', item: 'https://standoutlabs.in/services/' },
+  ],
+};
+
+const faqLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+
+const serviceLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  serviceType: 'Digital Marketing',
+  provider: { '@id': 'https://standoutlabs.in/#organization' },
+  areaServed: { '@type': 'City', name: 'Hyderabad' },
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog',
+    name: 'Digital Marketing & Growth Services',
+    itemListElement: services.map((s) => ({
+      '@type': 'Offer',
+      itemOffered: { '@type': 'Service', name: s.title },
+    })),
+  },
+};
+---
+
+<Layout title={title} description={description} canonical="/services/" jsonLd={[breadcrumbLd, faqLd, serviceLd]}>
+  <Header />
+
+  <!-- ============ HERO ============ -->
+  <section class="relative w-full bg-brand-black text-brand-white overflow-hidden">
+    <div class="absolute inset-0 blueprint-bg opacity-40 pointer-events-none"></div>
+    <div class="absolute -top-24 -right-24 w-[32rem] h-[32rem] rounded-full bg-brand-blue/20 blur-[120px] pointer-events-none"></div>
+
+    <div class="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-12 py-28 md:py-40 flex flex-col gap-8">
+      <nav aria-label="Breadcrumb" class="text-xs font-sans text-white/50">
+        <a href="/" class="hover:text-white cursor-none transition-colors">Home</a>
+        <span class="mx-2">/</span>
+        <span class="text-white/80">Services</span>
+      </nav>
+
+      <h1 class="font-display font-bold text-4xl sm:text-6xl md:text-7xl lg:text-[5.25rem] leading-[0.95] tracking-tight text-balance max-w-5xl">
+        Digital marketing & AI branding,<br class="hidden md:block" />
+        <span class="text-brand-blue">engineered in Hyderabad.</span>
+      </h1>
+
+      <p class="text-white/70 text-lg md:text-xl leading-relaxed max-w-2xl font-sans">
+        Standout Labs is a full-service growth studio. We combine brand, web, performance
+        marketing, and AI automation into one system built to make your business impossible
+        to ignore — starting right here in Hyderabad.
+      </p>
+
+      <div class="flex flex-col sm:flex-row gap-4 mt-4">
+        <MagneticButton
+          client:load
+          className="bg-brand-blue hover:bg-white hover:text-brand-black text-white text-base font-semibold px-8 py-4 rounded-full transition-colors cursor-none shadow-md"
+          onClick={() => { window.location.href = 'mailto:info@standoutlabs.in'; }}
+        >
+          Start your project →
+        </MagneticButton>
+        <a
+          href="/#work"
+          class="inline-flex items-center justify-center border border-white/25 hover:border-white text-white text-base font-semibold px-8 py-4 rounded-full transition-colors cursor-none"
+        >
+          See our work
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ INTRO ============ -->
+  <section class="w-full bg-brand-bg border-b border-[#E3E3DF]/60">
+    <div class="w-full max-w-7xl mx-auto px-6 md:px-12 py-20 md:py-28 grid md:grid-cols-[1fr_1.4fr] gap-10 md:gap-16 items-start">
+      <h2 class="font-display font-bold text-3xl md:text-4xl tracking-tight text-brand-black leading-[1.05] text-balance">
+        One studio. Six systems. Every one built to grow your business.
+      </h2>
+      <p class="text-neutral-700 text-lg leading-relaxed font-sans">
+        Most businesses in Hyderabad juggle a designer, an ads freelancer, a developer, and a
+        content person who never talk to each other. We replace that with a single team that
+        designs your brand, builds your website, runs your marketing, and automates your
+        operations — so every part pulls in the same direction. Pick the systems you need below.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============ SERVICE ROWS ============ -->
+  <section id="services-list" class="w-full bg-brand-bg">
+    <div class="w-full max-w-7xl mx-auto px-6 md:px-12">
+      {services.map((s, i) => (
+        <article class={`group grid md:grid-cols-12 gap-6 md:gap-10 py-14 md:py-20 ${i !== 0 ? 'border-t border-[#E3E3DF]' : ''}`}>
+          <div class="md:col-span-4 flex items-start gap-5">
+            <span class="font-display font-medium text-brand-blue text-lg tabular-nums pt-1">{s.num}</span>
+            <div class="flex flex-col gap-3">
+              <h3 class="font-display font-bold text-3xl md:text-4xl tracking-tight text-brand-black leading-[1.05] group-hover:text-brand-blue transition-colors">
+                {s.title}
+              </h3>
+              <p class="text-brand-black/90 text-lg font-medium leading-snug max-w-xs">{s.lead}</p>
+            </div>
+          </div>
+
+          <div class="md:col-span-4 flex items-start">
+            <p class="text-neutral-700 text-base md:text-lg leading-relaxed font-sans">{s.body}</p>
+          </div>
+
+          <div class="md:col-span-4">
+            <ul class="grid grid-cols-2 gap-x-6 gap-y-3">
+              {s.deliverables.map((d) => (
+                <li class="flex items-center gap-3 text-neutral-800 text-sm md:text-base font-sans">
+                  <span class="w-1.5 h-1.5 rounded-full bg-brand-blue flex-shrink-0"></span>
+                  {d}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <!-- ============ LOCAL TRUST ============ -->
+  <section class="w-full bg-brand-black text-brand-white relative overflow-hidden">
+    <div class="absolute inset-0 grid-bg opacity-[0.07] pointer-events-none"></div>
+    <div class="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-12 py-20 md:py-28 flex flex-col gap-10">
+      <h2 class="font-display font-bold text-3xl md:text-5xl tracking-tight text-balance max-w-3xl leading-[1.05]">
+        Why Hyderabad businesses choose Standout Labs
+      </h2>
+      <div class="grid sm:grid-cols-3 gap-8 md:gap-12">
+        <div class="flex flex-col gap-2">
+          <span class="font-display font-bold text-2xl text-brand-blue">Local, on the ground</span>
+          <p class="text-white/70 leading-relaxed font-sans">In-person strategy, faster turnarounds, and marketing that understands the Hyderabad market.</p>
+        </div>
+        <div class="flex flex-col gap-2">
+          <span class="font-display font-bold text-2xl text-brand-blue">Systems, not silos</span>
+          <p class="text-white/70 leading-relaxed font-sans">Brand, web, ads, and AI built to work together — one team accountable for the whole engine.</p>
+        </div>
+        <div class="flex flex-col gap-2">
+          <span class="font-display font-bold text-2xl text-brand-blue">Measured on outcomes</span>
+          <p class="text-white/70 leading-relaxed font-sans">We report on enquiries and revenue, not vanity metrics. Growth is the only KPI that matters.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FAQ ============ -->
+  <section class="w-full bg-brand-bg border-t border-[#E3E3DF]/60">
+    <div class="w-full max-w-4xl mx-auto px-6 md:px-12 py-20 md:py-28 flex flex-col gap-12">
+      <h2 class="font-display font-bold text-3xl md:text-5xl tracking-tight text-brand-black text-balance">
+        Questions, answered
+      </h2>
+      <div class="flex flex-col">
+        {faqs.map((f, i) => (
+          <details class={`group py-6 ${i !== 0 ? 'border-t border-[#E3E3DF]' : ''}`}>
+            <summary class="flex justify-between items-start gap-6 cursor-none list-none">
+              <h3 class="font-display font-semibold text-xl md:text-2xl text-brand-black leading-snug">{f.q}</h3>
+              <span class="mt-1 flex-shrink-0 w-8 h-8 rounded-full border border-[#E3E3DF] grid place-items-center text-brand-black transition-transform duration-300 group-open:rotate-45">+</span>
+            </summary>
+            <p class="text-neutral-700 text-base md:text-lg leading-relaxed font-sans mt-4 max-w-2xl">{f.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+</Layout>
+
+<style>
+  /* Reduced-motion users still get instant open/close — details is native, nothing to disable. */
+  summary::-webkit-details-marker { display: none; }
+</style>
