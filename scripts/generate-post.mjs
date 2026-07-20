@@ -5,7 +5,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 const BLOG_DIR = 'src/pages/blog';
-const MODEL = 'meta/llama-3.1-405b-instruct'; // highest-quality free model on build.nvidia.com
+const MODEL = 'nvidia/nemotron-3-ultra-550b-a55b'; // largest free model on build.nvidia.com (reasoning; clean content field)
 const API_KEY = process.env.NVIDIA_API_KEY;
 
 if (!API_KEY) {
@@ -92,7 +92,7 @@ const res = await fetch('https://integrate.api.nvidia.com/v1/chat/completions', 
   },
   body: JSON.stringify({
     model: MODEL,
-    max_tokens: 2500,
+    max_tokens: 6000, // reasoning model: leave room for thinking + the full post
     temperature: 0.7,
     messages: [{ role: 'user', content: prompt }],
   }),
