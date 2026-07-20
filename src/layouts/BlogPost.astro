@@ -1,0 +1,87 @@
+---
+import Layout from './Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+const { frontmatter, url } = Astro.props;
+const { title, description, pubDate, author = 'Standout Labs', image, keywords } = frontmatter;
+
+const dateLabel = new Date(pubDate).toLocaleDateString('en-IN', {
+  year: 'numeric', month: 'long', day: 'numeric',
+});
+
+const articleLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: title,
+  description,
+  datePublished: pubDate,
+  author: { '@type': 'Organization', name: author },
+  publisher: { '@id': 'https://www.standoutlabs.in/#organization' },
+  ...(image ? { image: new URL(image, 'https://www.standoutlabs.in').href } : {}),
+  mainEntityOfPage: new URL(url, 'https://www.standoutlabs.in').href,
+};
+---
+
+<Layout
+  title={`${title} | Standout Labs`}
+  description={description}
+  canonical={url}
+  keywords={keywords}
+  ogImage={image}
+  jsonLd={articleLd}
+>
+  <Header />
+
+  <article class="w-full bg-brand-bg">
+    <div class="w-full max-w-3xl mx-auto px-6 md:px-8 pt-20 md:pt-28 pb-20">
+      <nav aria-label="Breadcrumb" class="text-xs font-sans text-neutral-500 mb-8">
+        <a href="/" class="hover:text-brand-black cursor-none transition-colors">Home</a>
+        <span class="mx-2">/</span>
+        <a href="/blog/" class="hover:text-brand-black cursor-none transition-colors">Blog</a>
+      </nav>
+
+      <header class="flex flex-col gap-4 mb-12">
+        <h1 class="font-display font-bold text-3xl sm:text-5xl tracking-tight text-brand-black leading-[1.05] text-balance">
+          {title}
+        </h1>
+        <div class="flex items-center gap-3 text-sm text-neutral-500 font-sans">
+          <time datetime={new Date(pubDate).toISOString()}>{dateLabel}</time>
+          <span>·</span>
+          <span>{author}</span>
+        </div>
+      </header>
+
+      <div class="post-body">
+        <slot />
+      </div>
+
+      <div class="mt-16 pt-10 border-t border-[#E3E3DF] flex flex-col gap-4">
+        <h2 class="font-display font-bold text-2xl text-brand-black tracking-tight">Ready to grow your business?</h2>
+        <p class="text-neutral-700 font-sans">We're a Hyderabad digital marketing & AI branding studio. Let's build your growth system.</p>
+        <a href="mailto:info@standoutlabs.in" class="inline-flex w-fit items-center bg-brand-black hover:bg-brand-blue text-white text-sm font-semibold px-6 py-3 rounded-full transition-colors cursor-none">
+          Start your project →
+        </a>
+      </div>
+    </div>
+  </article>
+
+  <Footer />
+</Layout>
+
+<style>
+  /* Article typography (no tailwind-typography dependency needed). */
+  .post-body { color: #3f3f3f; font-family: 'Poppins', ui-sans-serif, system-ui, sans-serif; font-size: 1.075rem; line-height: 1.75; }
+  .post-body :global(h2) { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 1.75rem; letter-spacing: -0.02em; color: #111; margin: 2.5rem 0 1rem; line-height: 1.2; }
+  .post-body :global(h3) { font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 1.3rem; color: #111; margin: 2rem 0 0.75rem; }
+  .post-body :global(p) { margin: 0 0 1.25rem; }
+  .post-body :global(ul), .post-body :global(ol) { margin: 0 0 1.25rem 1.25rem; display: flex; flex-direction: column; gap: 0.5rem; }
+  .post-body :global(li) { padding-left: 0.25rem; }
+  .post-body :global(ul li) { list-style: disc; }
+  .post-body :global(ol li) { list-style: decimal; }
+  .post-body :global(a) { color: #3B82F6; text-decoration: underline; text-underline-offset: 2px; }
+  .post-body :global(strong) { color: #111; font-weight: 600; }
+  .post-body :global(blockquote) { border-left: 3px solid #3B82F6; padding-left: 1rem; margin: 1.5rem 0; color: #555; font-style: italic; }
+  .post-body :global(img) { border-radius: 0.75rem; margin: 1.5rem 0; }
+  .post-body :global(hr) { border: 0; border-top: 1px solid #E3E3DF; margin: 2.5rem 0; }
+</style>
