@@ -31,8 +31,9 @@ const site = Astro.site ?? new URL("https://www.standoutlabs.in");
 
 // Sitewide social/profile URLs for the Organization `sameAs`. Add real links here.
 const SOCIALS: string[] = [
-  // "https://www.linkedin.com/company/standoutlabs",
-  // "https://www.instagram.com/standoutlabs",
+  "https://www.linkedin.com/company/standoutlabs",
+  "https://www.instagram.com/standoutlabs",
+  "https://www.facebook.com/share/1EM7wJ1EbB/",
 ];
 const canonicalURL = new URL(canonical ?? Astro.url.pathname, site);
 const ogImageURL = new URL(ogImage, site);
