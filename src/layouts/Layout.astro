@@ -13,6 +13,8 @@ interface Props {
   jsonLd?: Record<string, unknown> | Record<string, unknown>[];
   /** Set true on thin/utility pages you don't want indexed. */
   noindex?: boolean;
+  /** Comma-separated keywords for this page. */
+  keywords?: string;
 }
 
 const {
@@ -22,6 +24,7 @@ const {
   ogImage = "/brand-assets/png/logo-2048.png",
   jsonLd,
   noindex = false,
+  keywords = "digital marketing Hyderabad, digital marketing agency Hyderabad, AI branding, branding agency Hyderabad, web design Hyderabad, web development Hyderabad, SEO Hyderabad, local SEO, performance marketing, social media marketing Hyderabad, content marketing, AI automation, CRM automation, growth marketing, Standout Labs, StandoutLabs",
 } = Astro.props;
 
 const site = Astro.site ?? new URL("https://standoutlabs.in");
@@ -91,6 +94,7 @@ const graph = [orgLd, websiteLd, ...(jsonLd ? (Array.isArray(jsonLd) ? jsonLd : 
     <title>{title}</title>
     <meta name="title" content={title} />
     <meta name="description" content={description} />
+    <meta name="keywords" content={keywords} />
     <link rel="canonical" href={canonicalURL.href} />
     <meta name="robots" content={noindex ? "noindex, nofollow" : "index, follow, max-image-preview:large"} />
     <meta name="theme-color" content="#111111" />
@@ -160,6 +164,45 @@ const graph = [orgLd, websiteLd, ...(jsonLd ? (Array.isArray(jsonLd) ? jsonLd : 
 
         // Make lenis globally accessible for other animations (like scroll sync)
         window.lenisInstance = lenis;
+      }
+
+      // --- Hash-anchor navigation (Lenis suppresses native anchor jumps) ---
+      const HEADER_OFFSET = -90; // account for the sticky header height
+
+      function scrollToHash(hash: string, smooth = true) {
+        if (!hash || hash === '#') return false;
+        const el = document.querySelector(hash);
+        if (!el) return false;
+        if (window.lenisInstance) {
+          window.lenisInstance.scrollTo(el, { offset: HEADER_OFFSET, duration: smooth ? 1.2 : 0 });
+        } else {
+          const y = el.getBoundingClientRect().top + window.scrollY + HEADER_OFFSET;
+          window.scrollTo({ top: y, behavior: smooth ? 'smooth' : 'auto' });
+        }
+        return true;
+      }
+
+      // Intercept in-page anchor links, including "/#id" links when already on that page.
+      document.addEventListener('click', (e) => {
+        const link = (e.target as HTMLElement)?.closest('a');
+        if (!link) return;
+        const href = link.getAttribute('href') || '';
+        const hashIndex = href.indexOf('#');
+        if (hashIndex === -1) return;
+        const path = href.slice(0, hashIndex);
+        const hash = href.slice(hashIndex);
+        // Only intercept when the target lives on the current page.
+        const samePage = path === '' || path === '/' && window.location.pathname === '/' || path === window.location.pathname;
+        if (!samePage) return;
+        if (scrollToHash(hash)) {
+          e.preventDefault();
+          history.replaceState(null, '', hash);
+        }
+      });
+
+      // On load, if the URL carries a hash (e.g. arrived from another page), scroll to it.
+      if (window.location.hash) {
+        window.addEventListener('load', () => setTimeout(() => scrollToHash(window.location.hash, false), 200));
       }
     </script>
   </body>

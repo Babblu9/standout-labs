@@ -1,0 +1,122 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import MagneticButton from '../components/MagneticButton.tsx';
+
+const title = "Our Process — How We Build Growth Systems | Standout Labs";
+const description =
+  "The Standout Labs process: a clear 7-phase system — Discover, Research, Strategy, Identity, Website, Launch, Growth — for digital marketing, branding, and web projects in Hyderabad. See exactly how we work.";
+const keywords =
+  "digital marketing process, branding process, web design process Hyderabad, how digital marketing agency works, marketing strategy, brand strategy, SEO process, growth marketing process, Standout Labs process";
+
+const steps = [
+  { num: '01', name: 'Discover', desc: 'We start with alignment workshops and customer interviews to understand your business, market, and goals — before a single pixel or campaign is created.' },
+  { num: '02', name: 'Research', desc: 'We analyse competitors, audit your current presence, and build moodboards so every decision is grounded in your market, not guesswork.' },
+  { num: '03', name: 'Strategy', desc: 'We define positioning, messaging, and an SEO keyword strategy — the blueprint that makes your brand impossible to ignore in Hyderabad and beyond.' },
+  { num: '04', name: 'Identity', desc: 'We design the brand: logo, style guide, layout grids, and visual assets that establish instant trust and authority.' },
+  { num: '05', name: 'Website', desc: 'We engineer a fast, conversion-focused website on a modern stack, with technical SEO and local SEO built in from the first line of code.' },
+  { num: '06', name: 'Launch', desc: 'We handle DNS, CDN, performance and SEO audits, and QA — so launch day is smooth and your site is ready to rank.' },
+  { num: '07', name: 'Growth', desc: 'We integrate AI automation, run Meta and Google Ads, and optimise conversions — turning traffic into measurable customers month after month.' },
+];
+
+const breadcrumbLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://standoutlabs.in/' },
+    { '@type': 'ListItem', position: 2, name: 'Process', item: 'https://standoutlabs.in/process/' },
+  ],
+};
+
+const howToLd = {
+  '@context': 'https://schema.org',
+  '@type': 'HowTo',
+  name: 'How Standout Labs builds growth systems',
+  description,
+  step: steps.map((s, i) => ({
+    '@type': 'HowToStep',
+    position: i + 1,
+    name: s.name,
+    text: s.desc,
+  })),
+};
+---
+
+<Layout title={title} description={description} keywords={keywords} canonical="/process/" jsonLd={[breadcrumbLd, howToLd]}>
+  <Header />
+
+  <!-- HERO -->
+  <section class="relative w-full bg-brand-black text-brand-white overflow-hidden">
+    <div class="absolute inset-0 blueprint-bg opacity-40 pointer-events-none"></div>
+    <div class="absolute -top-24 -left-24 w-[32rem] h-[32rem] rounded-full bg-brand-blue/20 blur-[120px] pointer-events-none"></div>
+
+    <div class="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-12 py-28 md:py-40 flex flex-col gap-8">
+      <nav aria-label="Breadcrumb" class="text-xs font-sans text-white/50">
+        <a href="/" class="hover:text-white cursor-none transition-colors">Home</a>
+        <span class="mx-2">/</span>
+        <span class="text-white/80">Process</span>
+      </nav>
+
+      <h1 class="font-display font-bold text-4xl sm:text-6xl md:text-7xl lg:text-[5.25rem] leading-[0.95] tracking-tight text-balance max-w-5xl">
+        How we build things that<br class="hidden md:block" />
+        <span class="text-brand-blue">stand out.</span>
+      </h1>
+
+      <p class="text-white/70 text-lg md:text-xl leading-relaxed max-w-2xl font-sans">
+        No black boxes. Every brand, website, and marketing engine we ship in Hyderabad
+        follows the same seven-phase system — from first workshop to compounding growth.
+      </p>
+
+      <div class="mt-4">
+        <MagneticButton
+          client:load
+          className="bg-brand-blue hover:bg-white hover:text-brand-black text-white text-base font-semibold px-8 py-4 rounded-full transition-colors cursor-none shadow-md"
+          onClick={() => { window.location.href = 'mailto:info@standoutlabs.in'; }}
+        >
+          Start your project →
+        </MagneticButton>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS TIMELINE -->
+  <section class="w-full bg-brand-bg">
+    <div class="w-full max-w-5xl mx-auto px-6 md:px-12 py-20 md:py-28">
+      <div class="flex flex-col">
+        {steps.map((s, i) => (
+          <article class={`grid grid-cols-[auto_1fr] gap-6 md:gap-10 py-10 ${i !== 0 ? 'border-t border-[#E3E3DF]' : ''}`}>
+            <div class="flex flex-col items-center gap-3">
+              <span class="font-display font-bold text-brand-blue text-lg tabular-nums">{s.num}</span>
+              {i !== steps.length - 1 && <span class="w-px flex-1 bg-[#E3E3DF]"></span>}
+            </div>
+            <div class="flex flex-col gap-3 pb-2">
+              <h2 class="font-display font-bold text-2xl md:text-4xl tracking-tight text-brand-black leading-[1.05]">{s.name}</h2>
+              <p class="text-neutral-700 text-base md:text-lg leading-relaxed font-sans max-w-2xl">{s.desc}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="w-full bg-brand-black text-brand-white">
+    <div class="w-full max-w-4xl mx-auto px-6 md:px-12 py-20 md:py-28 flex flex-col items-center text-center gap-8">
+      <h2 class="font-display font-bold text-3xl sm:text-5xl tracking-tight text-balance leading-[1.05]">
+        Ready to start at phase one?
+      </h2>
+      <p class="text-white/70 text-lg leading-relaxed max-w-xl font-sans">
+        Tell us where your business is today. We'll show you exactly what the next seven phases look like for you.
+      </p>
+      <a
+        href="mailto:info@standoutlabs.in"
+        class="inline-flex items-center justify-center bg-brand-blue hover:bg-white hover:text-brand-black text-white text-base font-semibold px-8 py-4 rounded-full transition-colors cursor-none shadow-md"
+      >
+        Start your project →
+      </a>
+    </div>
+  </section>
+
+  <Footer />
+</Layout>

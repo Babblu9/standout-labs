@@ -16,7 +16,7 @@ import MagneticButton from './MagneticButton.tsx';
   <nav class="hidden md:flex items-center gap-8 z-10">
     <a href="/services/" class="text-sm font-medium text-neutral-600 hover:text-brand-black transition-colors cursor-none">Services</a>
     <a href="/#work" class="text-sm font-medium text-neutral-600 hover:text-brand-black transition-colors cursor-none">Work</a>
-    <a href="/#process" class="text-sm font-medium text-neutral-600 hover:text-brand-black transition-colors cursor-none">Process</a>
+    <a href="/process/" class="text-sm font-medium text-neutral-600 hover:text-brand-black transition-colors cursor-none">Process</a>
     <a href="/#why-choose-us" class="text-sm font-medium text-neutral-600 hover:text-brand-black transition-colors cursor-none">Why Us</a>
   </nav>
 
@@ -27,7 +27,10 @@ import MagneticButton from './MagneticButton.tsx';
       className="bg-brand-black text-brand-white text-xs md:text-sm font-semibold px-5 py-2.5 rounded-full hover:bg-brand-blue transition-colors cursor-none shadow-sm"
       onClick={() => {
         const contactSection = document.getElementById('contact');
-        if (contactSection) {
+        if (!contactSection) { window.location.href = '/#contact'; return; }
+        if (window.lenisInstance) {
+          window.lenisInstance.scrollTo(contactSection, { offset: -40 });
+        } else {
           contactSection.scrollIntoView({ behavior: 'smooth' });
         }
       }}
