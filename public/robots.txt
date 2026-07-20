@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://standoutlabs.in/sitemap.xml
+Sitemap: https://www.standoutlabs.in/sitemap.xml
