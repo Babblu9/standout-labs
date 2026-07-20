@@ -21,13 +21,19 @@ const {
   title = "Digital Marketing & AI Branding Agency in Hyderabad | Standout Labs",
   description = "Standout Labs is a Hyderabad-based digital marketing and AI branding studio. We build brand identity, high-converting websites, performance marketing, content, and AI automation that make your business impossible to ignore.",
   canonical,
-  ogImage = "/brand-assets/png/logo-2048.png",
+  ogImage = "/og-image.png",
   jsonLd,
   noindex = false,
   keywords = "digital marketing Hyderabad, digital marketing agency Hyderabad, AI branding, branding agency Hyderabad, web design Hyderabad, web development Hyderabad, SEO Hyderabad, local SEO, performance marketing, social media marketing Hyderabad, content marketing, AI automation, CRM automation, growth marketing, Standout Labs, StandoutLabs",
 } = Astro.props;
 
 const site = Astro.site ?? new URL("https://standoutlabs.in");
+
+// Sitewide social/profile URLs for the Organization `sameAs`. Add real links here.
+const SOCIALS: string[] = [
+  // "https://www.linkedin.com/company/standoutlabs",
+  // "https://www.instagram.com/standoutlabs",
+];
 const canonicalURL = new URL(canonical ?? Astro.url.pathname, site);
 const ogImageURL = new URL(ogImage, site);
 
@@ -56,7 +62,7 @@ const orgLd = {
     addressRegion: "Telangana",
     addressCountry: "IN",
   },
-  sameAs: [],
+  sameAs: SOCIALS,
   knowsAbout: [
     "Digital Marketing",
     "AI Branding",
@@ -110,6 +116,9 @@ const graph = [orgLd, websiteLd, ...(jsonLd ? (Array.isArray(jsonLd) ? jsonLd : 
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={ogImageURL.href} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Standout Labs — digital marketing & AI branding studio, Hyderabad" />
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
