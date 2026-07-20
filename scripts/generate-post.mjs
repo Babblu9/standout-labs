@@ -84,27 +84,54 @@ Return ONLY a valid JSON object (no markdown fences) with exactly these keys:
   "body": "the full post in Markdown (## headings, paragraphs, lists)"
 }`;
 
-const res = await fetch('https://integrate.api.nvidia.com/v1/chat/completions', {
-  method: 'POST',
-  headers: {
-    Authorization: `Bearer ${API_KEY}`,
-    'content-type': 'application/json',
-  },
-  body: JSON.stringify({
-    model: MODEL,
-    max_tokens: 6000, // reasoning model: leave room for thinking + the full post
-    temperature: 0.7,
-    messages: [{ role: 'user', content: prompt }],
-  }),
-});
+// Try the biggest model first; fall back to a reliably-available one. The 550B
+// free pool is often capacity-limited (503/429), so retry then downgrade.
+const MODELS = [MODEL, 'meta/llama-3.3-70b-instruct'];
+const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
-if (!res.ok) {
-  console.error('NVIDIA API error', res.status, await res.text());
-  process.exit(1);
+async function callModel(model) {
+  for (let attempt = 1; attempt <= 3; attempt++) {
+    const res = await fetch('https://integrate.api.nvidia.com/v1/chat/completions', {
+      method: 'POST',
+      headers: { Authorization: `Bearer ${API_KEY}`, 'content-type': 'application/json' },
+      body: JSON.stringify({
+        model,
+        max_tokens: 6000,
+        temperature: 0.7,
+        messages: [{ role: 'user', content: prompt }],
+      }),
+    });
+    if (res.ok) {
+      const data = await res.json();
+      return data.choices?.[0]?.message?.content?.trim() || '';
+    }
+    const status = res.status;
+    const errBody = await res.text();
+    // Retry on transient capacity errors; give up on this model otherwise.
+    if (status === 503 || status === 429) {
+      console.error(`${model} busy (${status}), attempt ${attempt}/3`);
+      await sleep(attempt * 8000);
+      continue;
+    }
+    console.error(`${model} error ${status}: ${errBody.slice(0, 200)}`);
+    return null;
+  }
+  return null;
 }
 
-const data = await res.json();
-let text = data.choices?.[0]?.message?.content?.trim() || '';
+let text = '';
+for (const model of MODELS) {
+  text = (await callModel(model)) || '';
+  if (text) {
+    console.log(`Generated with ${model}`);
+    break;
+  }
+  console.error(`Falling back from ${model}`);
+}
+if (!text) {
+  console.error('All models failed');
+  process.exit(1);
+}
 // Strip accidental code fences and grab the JSON object.
 text = text.replace(/^```(?:json)?/i, '').replace(/```$/, '').trim();
 const start = text.indexOf('{');
