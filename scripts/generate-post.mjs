@@ -5,7 +5,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 const BLOG_DIR = 'src/pages/blog';
-const MODEL = 'meta/llama-3.3-70b-instruct'; // free on build.nvidia.com
+const MODEL = 'meta/llama-3.1-405b-instruct'; // highest-quality free model on build.nvidia.com
 const API_KEY = process.env.NVIDIA_API_KEY;
 
 if (!API_KEY) {
