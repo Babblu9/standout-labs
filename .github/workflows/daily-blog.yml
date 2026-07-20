@@ -21,7 +21,7 @@ jobs:
 
       - name: Generate post
         env:
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          NVIDIA_API_KEY: ${{ secrets.NVIDIA_API_KEY }}
         run: node scripts/generate-post.mjs
 
       - name: Commit & push

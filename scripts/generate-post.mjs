@@ -1,14 +1,15 @@
-// Generates one blog post via the Claude API and writes it to src/pages/blog/.
-// Run daily by .github/workflows/daily-blog.yml. Requires env ANTHROPIC_API_KEY.
+// Generates one blog post via NVIDIA's free OpenAI-compatible API and writes it
+// to src/pages/blog/. Run daily by .github/workflows/daily-blog.yml.
+// Requires env NVIDIA_API_KEY (free key from https://build.nvidia.com).
 import fs from 'node:fs';
 import path from 'node:path';
 
 const BLOG_DIR = 'src/pages/blog';
-const MODEL = 'claude-sonnet-4-6'; // good quality/cost for daily content
-const API_KEY = process.env.ANTHROPIC_API_KEY;
+const MODEL = 'meta/llama-3.3-70b-instruct'; // free on build.nvidia.com
+const API_KEY = process.env.NVIDIA_API_KEY;
 
 if (!API_KEY) {
-  console.error('Missing ANTHROPIC_API_KEY');
+  console.error('Missing NVIDIA_API_KEY');
   process.exit(1);
 }
 
@@ -83,27 +84,27 @@ Return ONLY a valid JSON object (no markdown fences) with exactly these keys:
   "body": "the full post in Markdown (## headings, paragraphs, lists)"
 }`;
 
-const res = await fetch('https://api.anthropic.com/v1/messages', {
+const res = await fetch('https://integrate.api.nvidia.com/v1/chat/completions', {
   method: 'POST',
   headers: {
-    'x-api-key': API_KEY,
-    'anthropic-version': '2023-06-01',
+    Authorization: `Bearer ${API_KEY}`,
     'content-type': 'application/json',
   },
   body: JSON.stringify({
     model: MODEL,
     max_tokens: 2500,
+    temperature: 0.7,
     messages: [{ role: 'user', content: prompt }],
   }),
 });
 
 if (!res.ok) {
-  console.error('Claude API error', res.status, await res.text());
+  console.error('NVIDIA API error', res.status, await res.text());
   process.exit(1);
 }
 
 const data = await res.json();
-let text = data.content?.[0]?.text?.trim() || '';
+let text = data.choices?.[0]?.message?.content?.trim() || '';
 // Strip accidental code fences and grab the JSON object.
 text = text.replace(/^```(?:json)?/i, '').replace(/```$/, '').trim();
 const start = text.indexOf('{');
