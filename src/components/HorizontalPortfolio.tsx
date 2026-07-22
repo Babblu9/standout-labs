@@ -66,6 +66,18 @@ export default function HorizontalPortfolio() {
       imgPos: 'object-top',
       url: 'https://aureliua.vercel.app',
     },
+    {
+      name: 'Void Architects',
+      industry: 'Architecture · Design',
+      bg: 'bg-[#0a0a0a]',
+      textLight: true,
+      challenge: 'A premier architecture studio in Hyderabad needed an immersive, high-end digital portfolio to match their minimalist design philosophy and showcase their decade of built work.',
+      solution: 'Designed and developed a premium digital platform featuring fluid transitions, rich project galleries, and an interactive 3D consultation booking system.',
+      result: 'Immersive digital portfolio',
+      image: '/images/portfolio/voidarchitects.png',
+      imgPos: 'object-top',
+      url: 'https://www.voidarchitects.space/',
+    },
   ];
 
   const count = projects.length;
