@@ -131,6 +131,19 @@ const graph = [orgLd, websiteLd, ...(jsonLd ? (Array.isArray(jsonLd) ? jsonLd : 
     <!-- Structured data -->
     <script type="application/ld+json" set:html={JSON.stringify(graph)} />
 
+    <!-- Google Analytics (gtag.js) -->
+    {import.meta.env.PUBLIC_GA_ID && (
+      <>
+        <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${import.meta.env.PUBLIC_GA_ID}`}></script>
+        <script is:inline set:html={`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', '${import.meta.env.PUBLIC_GA_ID}');
+        `} />
+      </>
+    )}
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
