@@ -7,7 +7,7 @@ import WhatWeDo from '../components/WhatWeDo.astro';
 import SplitStory from '../components/SplitStory.tsx';
 import HorizontalPortfolio from '../components/HorizontalPortfolio.tsx';
 import BlueprintProcess from '../components/BlueprintProcess.tsx';
-import WhyStandout from '../components/WhyStandout.astro';
+// import WhyStandout from '../components/WhyStandout.astro'; // hidden to lighten homepage — 3 principles overlap Hero/ScrollStory/SplitStory. Re-enable by uncommenting this + the usage below.
 import Testimonials from '../components/Testimonials.astro';
 import Footer from '../components/Footer.astro';
 import LiveAIDemo from '../components/LiveAIDemo.tsx';
@@ -35,8 +35,8 @@ import LiveAIDemo from '../components/LiveAIDemo.tsx';
   {/* How we work — blueprint process */}
   <BlueprintProcess client:load />
 
-  {/* Why choose us — philosophy */}
-  <WhyStandout />
+  {/* Why choose us — philosophy (hidden to lighten homepage; re-enable with the import above) */}
+  {/* <WhyStandout /> */}
 
   {/* Client results */}
   <Testimonials />
