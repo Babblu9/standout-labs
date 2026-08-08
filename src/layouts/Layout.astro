@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
 import CustomCursor from '../components/CustomCursor.tsx';
+import WhatsAppEnquiry from '../components/WhatsAppEnquiry.astro';
 
 interface Props {
   title?: string;
@@ -152,6 +153,9 @@ const graph = [orgLd, websiteLd, ...(jsonLd ? (Array.isArray(jsonLd) ? jsonLd : 
   <body class="bg-brand-bg text-brand-black antialiased selection:bg-brand-blue selection:text-brand-white">
     <!-- Premium custom cursor -->
     <CustomCursor client:load />
+
+    <!-- Floating WhatsApp enquiry -->
+    <WhatsAppEnquiry />
 
     <!-- Site Wrapper -->
     <div class="relative min-h-screen flex flex-col">
